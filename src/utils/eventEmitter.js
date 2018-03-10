@@ -25,5 +25,3 @@ function EventEmitter() {
 }
 
 export const eventEmitter = new EventEmitter();
-
-// named subscribers
