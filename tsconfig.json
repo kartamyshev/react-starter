@@ -6,7 +6,15 @@
     "outDir": "./build/",
     "preserveConstEnums": true,
     "removeComments": true,
-    "target": "ES5"
+    "target": "ES5",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@css/*": ["css/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"],
+    }
   },
   "exclude": [
     "node_modules",

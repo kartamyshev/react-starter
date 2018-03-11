@@ -5,9 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production",
-    "typings:i": "typings install --save react react-dom",
-    "typings:u": "typings uninstall --save react react-dom"
+    "build": "webpack --mode production"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
