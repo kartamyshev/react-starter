@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "typings:i": "typings install --save react react-dom",
+    "typings:u": "typings uninstall --save react react-dom"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -21,12 +23,14 @@
     "less-loader": "^4.0.6",
     "nodemon": "^1.17.1",
     "style-loader": "^0.20.2",
+    "ts-loader": "^4.0.1",
+    "typescript": "^2.7.2",
+    "typings": "^2.1.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "lodash": "^4.17.5",
     "react": "next",
     "react-dom": "next"
   }
