@@ -6,7 +6,7 @@ import 'css/base.less';
 
 ReactDOM.render(
   <Fragment>
-    <Sample ololoev={false} name="Kostya" />
+    <Sample />
   </Fragment>,
   document.getElementById('application-container')
 );
