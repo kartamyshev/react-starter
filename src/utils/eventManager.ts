@@ -1,4 +1,4 @@
-class EventEmitter {
+class EventManager {
 
   listeners: any = {};
 
@@ -24,4 +24,4 @@ class EventEmitter {
   };
 }
 
-export const eventEmitter = new EventEmitter();
+export const eventManager = new EventManager();
