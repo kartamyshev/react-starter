@@ -8,6 +8,8 @@
     "build": "webpack --mode production"
   },
   "devDependencies": {
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
     "babel-preset-env": "^1.6.1",
@@ -32,8 +34,6 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "@types/react": "^16.0.40",
-    "@types/react-dom": "^16.0.4",
     "react": "next",
     "react-dom": "next"
   }
