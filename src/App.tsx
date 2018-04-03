@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from '@store/Provider';
-import { Sample } from '@components/Sample/Sample';
+import { Counter } from '@components/Counter/Counter';
 import '@css/base.less';
 
 ReactDOM.render(
   <Provider>
-    <Sample />
+    <Counter />
   </Provider>,
   document.getElementById('application-container')
 );

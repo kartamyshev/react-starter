@@ -1,17 +1,17 @@
-export const incrementAge = (prevState: any) => {
+export const increment = (prevState: any) => {
   return {
     app: {
       ...prevState.app,
-      age: prevState.app.age + 1
+      counter: prevState.app.counter + 1
     }
   };
 };
 
-export const decrementAge = (prevState: any) => {
+export const decrement = (prevState: any) => {
   return {
     app: {
       ...prevState.app,
-      age: prevState.app.age - 1
+      counter: prevState.app.counter - 1
     }
   };
 };
