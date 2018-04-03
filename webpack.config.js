@@ -27,22 +27,22 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
+            loader: 'html-loader',
             options: { minimize: true }
           }
         ]
       },
       {
         test: /\.less$/,
-        use: [ 'style-loader', 'css-loader', 'less-loader' ]
+        use: ['style-loader', 'css-loader', 'less-loader']
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [ 'file-loader' ]
+        use: ['file-loader']
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [ 'file-loader' ]
+        use: ['file-loader']
       }
     ]
   },
@@ -60,7 +60,8 @@ module.exports = {
     alias: {
       '@components': path.resolve(__dirname, 'src', 'components'),
       '@css': path.resolve(__dirname, 'src', 'css'),
-      '@utils': path.resolve(__dirname, 'src', 'utils')
-    },
+      '@utils': path.resolve(__dirname, 'src', 'utils'),
+      '@store': path.resolve(__dirname, 'src', 'store')
+    }
   }
 };

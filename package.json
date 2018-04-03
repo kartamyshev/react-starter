@@ -22,7 +22,7 @@
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",
     "tslint-webpack-plugin": "^1.2.0",
-    "typescript": "^2.7.2",
+    "typescript": "^2.8.1",
     "typings": "^2.1.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10",
