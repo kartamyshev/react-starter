@@ -17,10 +17,13 @@ module.exports = {
         loader: 'tslint-loader'
       },
       {
-        test: /\.(js|ts|tsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'ts-loader'
+          loader: 'ts-loader',
+          query: {
+            ignoreDiagnostics: [2339]
+          }
         }
       },
       {
