@@ -1,33 +1,23 @@
 import * as React from 'react';
-import { Context } from '@store/createContext';
+import { AppContext } from '@store/AppContext';
+import { app } from '@store/state';
+import { incrementAge, decrementAge } from '@store/actions';
 
 export class Provider extends React.Component<any, any> {
-
-  public state = {
-    name: 'Konstantin',
-    age: 32,
-    cool: true
-  };
-
-  public incrementAge = () => {
-    this.setState({
-      age: this.state.age + 1
-    });
-  }
-
-  private get actions() {
-    return {
-      incrementAge: this.incrementAge
-    };
-  }
+  public state = { app };
 
   public render() {
     const value = {
       state: this.state,
-      actions: this.actions
+      actions: {
+        incrementAge: () => this.setState(incrementAge),
+        decrementAge: () => this.setState(decrementAge)
+      }
     };
-    return <Context.Provider value={value}>
-      { this.props.children }
-    </Context.Provider>;
+    return (
+      <AppContext.Provider value={value}>
+        {this.props.children}
+      </AppContext.Provider>
+    );
   }
 }
