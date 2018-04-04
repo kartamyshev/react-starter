@@ -1,17 +1,23 @@
 import * as React from 'react';
 import { AppContext } from '@store/AppContext';
-import { app } from '@store/state';
-import { increment, decrement } from '@store/actions';
+import { increment, decrement, changeName } from '@store/actions';
 
 export class Provider extends React.Component<any, any> {
-  public state = { app };
+
+  public state = {
+    counter: 0,
+    name: 'Mike'
+  };
 
   public render() {
     const value = {
       state: this.state,
       actions: {
         increment: () => this.setState(increment),
-        decrement: () => this.setState(decrement)
+        decrement: () => this.setState(decrement),
+        changeName: (name: any) => () => {
+          this.setState(changeName(name));
+        }
       }
     };
     return (

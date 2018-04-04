@@ -10,7 +10,7 @@ export const Button = ({
   text: string,
   action: () => void,
   className: string,
-  disabled: boolean
+  disabled?: boolean
 }) => {
   return <button
     disabled={disabled}
