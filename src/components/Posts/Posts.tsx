@@ -23,22 +23,22 @@ export class Posts extends React.Component<{
           disabled={false}
           className="button"
           text="Fetch Data"
-          action={this.fetchData}
+          action={this.fetchPost}
         />
       </div>
     );
   }
 
-  private fetchData = () => {
+  private fetchPost = () => {
     const {
       startFetching,
-      fetchData,
+      fetchPost,
       endFething,
       attachPost
     } = this.props.actions;
 
     startFetching();
-    fetchData()
+    fetchPost()
       .then((post: any) => {
         endFething();
         attachPost(post);

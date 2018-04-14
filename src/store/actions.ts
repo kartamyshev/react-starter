@@ -34,10 +34,8 @@ export const attachPost = (post: any) => (prevState: any) => {
   return { post };
 };
 
-export const fetchData = () => {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1')
+export const fetchData = (url: string) => {
+  return fetch(url)
     .then((response: any) => response.json())
-    .then((post: any) => {
-      return post;
-    });
+    .then((data: any) => data);
 };

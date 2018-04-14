@@ -27,7 +27,9 @@ export const getActionsForChunk = (chunk: string, { context }: any) => {
     case 'Posts':
       actionsWithoutParams = mapActionsWithoutParams({ startFetching, endFething }, context);
       actionsWithParams = mapActionsWithParams({ attachPost }, context);
-      asyncActions = { fetchData };
+      asyncActions = {
+        fetchPost: () => fetchData('https://jsonplaceholder.typicode.com/posts/1')
+      };
       return { ...actionsWithoutParams, ...actionsWithParams, ...asyncActions };
     default:
       return {};

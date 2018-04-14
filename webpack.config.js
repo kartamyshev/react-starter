@@ -22,7 +22,7 @@ module.exports = {
         use: {
           loader: 'ts-loader',
           query: {
-            ignoreDiagnostics: [2339]
+            ignoreDiagnostics: [2339, 1238]
           }
         }
       },
