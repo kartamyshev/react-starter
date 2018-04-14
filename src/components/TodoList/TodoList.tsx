@@ -27,11 +27,18 @@ export class TodoList extends React.Component<{
     });
   }
 
+  public addTodo = () => {
+    const { actions: { addTodo, clearValue }, derived: { value } } = this.props;
+    addTodo(value);
+    clearValue();
+  }
+
   public render() {
     const {
       actions,
       derived: { value, todos, loading, post }
     } = this.props;
+    console.log(actions);
     return (
       <div className="todo-list">
         <input
@@ -43,7 +50,7 @@ export class TodoList extends React.Component<{
           disabled={value === ''}
           className="button"
           text="Add Todo"
-          action={actions.addTodo(value)}
+          action={this.addTodo}
         />
         <Button
           disabled={!todos.length}
@@ -68,7 +75,7 @@ export class TodoList extends React.Component<{
               <Button
                 className="button"
                 text="x"
-                action={actions.removeTodo(todo.id)}
+                action={() => actions.removeTodo(todo.id) }
               />
             </div>;
           })

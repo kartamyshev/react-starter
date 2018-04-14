@@ -1,54 +1,33 @@
 import { AppContext } from './AppContext';
+import { mapActionsWithoutParams, mapActionsWithParams } from '@utils';
 
 import {
-  addTodo,
-  changeValue,
-  clearValue,
-  removeTodo,
   clearList,
+  clearValue,
   startFetching,
   endFething,
-  attachPost
+  addTodo,
+  changeValue,
+  removeTodo,
+  attachPost,
+  fetchData,
 } from './actions';
 
 export const getActionsForChunk = (chunk: string, { context }: any) => {
   switch (chunk) {
     case 'App':
-      return {
-        changeValue: (value: string) => {
-          context.setState(changeValue(value));
-        },
-        addTodo: (text: any) => () => {
-          context.setState(addTodo(text));
-          context.setState(clearValue);
-        },
-        removeTodo: (id: number) => () => {
-          context.setState(removeTodo(id));
-        },
-        clearList: () => {
-          context.setState(clearList);
-        },
-        startFetching: () => {
-          context.setState(startFetching);
-        },
-        endFething: () => {
-          context.setState(endFething);
-        },
-        attachPost: (post: any) => {
-          context.setState(attachPost(post));
-        },
-        fetchData: () => {
-          return fetch('https://jsonplaceholder.typicode.com/posts/1')
-            .then((response: any) => response.json())
-            .then((post: any) => {
-              return post;
-            });
-        }
-      };
+    const actionsWithoutParams: any = mapActionsWithoutParams(
+      { clearList, clearValue, startFetching, endFething },
+      context
+    );
+    const withParams = mapActionsWithParams({
+      addTodo, removeTodo, changeValue, attachPost
+    }, context);
+    const asyncActions: any = { fetchData };
+
+    return { ...actionsWithoutParams, ...withParams, ...asyncActions };
   }
 };
-
-
 
 export const getStateForChunk = (chunk: string) => {
   switch (chunk) {
