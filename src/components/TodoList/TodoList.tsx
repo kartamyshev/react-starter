@@ -17,6 +17,12 @@ export class TodoList extends React.Component<{
     clearValue();
   }
 
+  public clearList = () => {
+    const { actions: { clearList, clearValue } } = this.props;
+    clearList();
+    clearValue();
+  }
+
   public render() {
     const {
       actions,
@@ -39,7 +45,7 @@ export class TodoList extends React.Component<{
           disabled={!todos.length}
           className="button"
           text="Remove All"
-          action={actions.clearList}
+          action={this.clearList}
         />
         {
           todos.map((todo: any) => {

@@ -36,29 +36,16 @@ export const getActionsForChunk = (chunk: string, { context }: any) => {
 
 export const getStateForChunk = (chunk: string) => {
   switch (chunk) {
-    case 'App':
-      return {
-        todos: [],
-        value: '',
-        loading: false
-      };
-    case 'Posts':
-      return {
-        loading: false,
-        post: null
-      };
-    default:
-      return {};
+    case 'App': return { todos: [], value: '', loading: false };
+    case 'Posts': return { loading: false, post: null };
+    default: return {};
   }
 };
 
 export const getContextForChunk = (chunk: string) => {
   switch (chunk) {
-    case 'App':
-      return AppContext;
-    case 'Posts':
-      return PostsContext;
-    default:
-      throw new Error('PLease specify chunk of the Provider');
+    case 'App': return AppContext;
+    case 'Posts': return PostsContext;
+    default: throw new Error('PLease specify chunk of the Provider');
   }
 };
