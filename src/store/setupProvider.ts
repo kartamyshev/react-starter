@@ -28,13 +28,20 @@ export const getActionsForChunk = (chunk: string, { context }: any) => {
         clearList: () => {
           context.setState(clearList);
         },
-        fetchData: () => {
+        startFetching: () => {
           context.setState(startFetching);
-          fetch('https://jsonplaceholder.typicode.com/posts/1')
+        },
+        endFething: () => {
+          context.setState(endFething);
+        },
+        attachPost: (post: any) => {
+          context.setState(attachPost(post));
+        },
+        fetchData: () => {
+          return fetch('https://jsonplaceholder.typicode.com/posts/1')
             .then((response: any) => response.json())
             .then((post: any) => {
-              context.setState(endFething);
-              context.setState(attachPost(post));
+              return post;
             });
         }
       };

@@ -10,6 +10,23 @@ export class TodoList extends React.Component<{
   derived?: any;
   actions?: any;
 }, null> {
+
+  public fetchData = () => {
+    const {
+      startFetching,
+      fetchData,
+      endFething,
+      attachPost
+    } = this.props.actions;
+
+    startFetching();
+    fetchData()
+      .then((post: any) => {
+        endFething();
+        attachPost(post);
+    });
+  }
+
   public render() {
     const {
       actions,
@@ -38,7 +55,7 @@ export class TodoList extends React.Component<{
           disabled={false}
           className="button"
           text="Fetch Data"
-          action={actions.fetchData}
+          action={this.fetchData}
         />
         <div>
           { !post && 'Post will appear here' }

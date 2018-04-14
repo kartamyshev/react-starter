@@ -30,6 +30,6 @@ export const endFething = () => {
   return { loading: false };
 };
 
-export const attachPost = (post: any) => (prevState: any) {
+export const attachPost = (post: any) => (prevState: any) => {
   return { post };
 };
