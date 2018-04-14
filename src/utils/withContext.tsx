@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { AppContext } from '@store/AppContext';
+import { getContextForChunk } from '@utils/getContextForChunk';
 
-export const withContext = (key: any) => (Component: any) => (props: any) => {
-  const Context = {
-    'AppContext': AppContext
-  }[key];
+export const withContext = (chunk: any) => (Component: any) => (props: any) => {
+  const Context = getContextForChunk(chunk);
+
   return <Context.Consumer>
     {(context: any) => {
       return <Component

@@ -4,7 +4,7 @@ import { Button } from '@components/Button/Button';
 
 import './Counter.less';
 
-@withContext('AppContext')
+@withContext('Counter')
 export class Counter extends React.Component<{
   own?: any;
   derived?: any;
@@ -14,7 +14,6 @@ export class Counter extends React.Component<{
     return (
       <div className="counter">
         <div className="counter-title">Value: {this.props.derived.counter}</div>
-        {this.props.derived.name}
         <div>
           <Button
             disabled={this.props.derived.counter === 0}
