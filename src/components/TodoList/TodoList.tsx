@@ -11,7 +11,10 @@ export class TodoList extends React.Component<{
   actions?: any;
 }, null> {
   public render() {
-    const { actions, derived: { value, todos } } = this.props;
+    const {
+      actions,
+      derived: { value, todos, loading, post }
+    } = this.props;
     return (
       <div className="todo-list">
         <input
@@ -31,6 +34,16 @@ export class TodoList extends React.Component<{
           text="Remove All"
           action={actions.clearList}
         />
+        <Button
+          disabled={false}
+          className="button"
+          text="Fetch Data"
+          action={actions.fetchData}
+        />
+        <div>
+          { !post && 'Post will appear here' }
+          { post && post.body }
+        </div>
         {
           todos.map((todo: any) => {
             return <div key={todo.id}>

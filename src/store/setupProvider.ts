@@ -1,6 +1,15 @@
 import { AppContext } from './AppContext';
 
-import { addTodo, changeValue, clearValue, removeTodo, clearList } from './actions';
+import {
+  addTodo,
+  changeValue,
+  clearValue,
+  removeTodo,
+  clearList,
+  startFetching,
+  endFething,
+  attachPost
+} from './actions';
 
 export const getActionsForChunk = (chunk: string, { context }: any) => {
   switch (chunk) {
@@ -18,17 +27,29 @@ export const getActionsForChunk = (chunk: string, { context }: any) => {
         },
         clearList: () => {
           context.setState(clearList);
+        },
+        fetchData: () => {
+          context.setState(startFetching);
+          fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then((response: any) => response.json())
+            .then((post: any) => {
+              context.setState(endFething);
+              context.setState(attachPost(post));
+            });
         }
       };
   }
 };
+
+
 
 export const getStateForChunk = (chunk: string) => {
   switch (chunk) {
     case 'App':
       return {
         todos: [],
-        value: ''
+        value: '',
+        loading: false
       };
   }
 };

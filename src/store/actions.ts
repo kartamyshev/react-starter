@@ -15,13 +15,21 @@ export const changeValue = (value: string) => (prevState: any) => {
 };
 
 export const clearList = () => {
-  return {
-    todos: []
-  };
+  return { todos: [] };
 };
 
 export const clearValue = () => {
-  return {
-    value: ''
-  };
+  return { value: '' };
+};
+
+export const startFetching = () => {
+  return { loading: true };
+};
+
+export const endFething = () => {
+  return { loading: false };
+};
+
+export const attachPost = (post: any) => (prevState: any) {
+  return { post };
 };
