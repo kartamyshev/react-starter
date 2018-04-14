@@ -8,10 +8,8 @@ import { ChangeNameButton } from '@components/ChangeNameButton/ChangeNameButton'
 import '@css/base.less';
 
 ReactDOM.render(
-  <Fragment>
-    <Provider chunk="Counter">
-      <Counter />
-    </Provider>
-  </Fragment>,
+  <Provider chunk="Counter">
+    <Counter />
+  </Provider>,
   document.getElementById('application-container')
 );

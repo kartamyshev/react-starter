@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { getContextForChunk } from '@utils/getContextForChunk';
-import { getStateForChunk } from '@utils/getStateForChunk';
-import { getActionsForChunk } from '@utils/getActionsForChunk';
+import {
+  getContextForChunk,
+  getStateForChunk,
+  getActionsForChunk
+} from './setupProvider';
 
 export class Provider extends React.Component<{
   chunk: string;

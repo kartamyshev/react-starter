@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getContextForChunk } from '@utils/getContextForChunk';
+import { getContextForChunk } from '@store/setupProvider';
 
 export const withContext = (chunk: any) => (Component: any) => (props: any) => {
   const Context = getContextForChunk(chunk);
