@@ -1,15 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from '@store/Provider';
-import { Fragment } from '@utils/Fragment';
-import { Counter } from '@components/Counter/Counter';
-import { ChangeNameButton } from '@components/ChangeNameButton/ChangeNameButton';
+import { TodoList } from '@components/TodoList/TodoList';
 
 import '@css/base.less';
 
 ReactDOM.render(
-  <Provider chunk="Counter">
-    <Counter />
+  <Provider chunk="App">
+    <TodoList />
   </Provider>,
   document.getElementById('application-container')
 );

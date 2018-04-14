@@ -1,33 +1,41 @@
-import { CounterContext } from './CounterContext';
+import { AppContext } from './AppContext';
 
-import {
-  increment,
-  decrement,
-  changeName,
-} from './actions';
+import { addTodo, changeValue, clearValue, removeTodo, clearList } from './actions';
 
 export const getActionsForChunk = (chunk: string, { context }: any) => {
   switch (chunk) {
-    case 'Counter':
+    case 'App':
       return {
-        increment: () => context.setState(increment),
-        decrement: () => context.setState(decrement),
+        changeValue: (value: string) => {
+          context.setState(changeValue(value));
+        },
+        addTodo: (text: any) => () => {
+          context.setState(addTodo(text));
+          context.setState(clearValue);
+        },
+        removeTodo: (id: number) => () => {
+          context.setState(removeTodo(id));
+        },
+        clearList: () => {
+          context.setState(clearList);
+        }
       };
   }
 };
 
 export const getStateForChunk = (chunk: string) => {
   switch (chunk) {
-    case 'Counter':
+    case 'App':
       return {
-        counter: 0,
+        todos: [],
+        value: ''
       };
   }
 };
 
 export const getContextForChunk = (chunk: string) => {
   switch (chunk) {
-    case 'Counter':
-      return CounterContext;
+    case 'App':
+      return AppContext;
   }
 };

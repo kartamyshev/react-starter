@@ -1,11 +1,27 @@
-export const increment = (prevState: any) => {
-  return { counter: prevState.counter + 1 };
+export const addTodo = (text: string) => (prevState: any) => {
+  return {
+    todos: [...prevState.todos, { id: prevState.todos.length + 1, text } ]
+  };
 };
 
-export const decrement = (prevState: any) => {
-  return { counter: prevState.counter - 1 };
+export const removeTodo = (id: number) => (prevState: any) => {
+  return {
+    todos: prevState.todos.filter((todo: any) => todo.id !== id)
+  };
 };
 
-export const changeName = (name: string) => (prevState: any) => {
-  return { name };
+export const changeValue = (value: string) => (prevState: any) => {
+  return { value };
+};
+
+export const clearList = () => {
+  return {
+    todos: []
+  };
+};
+
+export const clearValue = () => {
+  return {
+    value: ''
+  };
 };
