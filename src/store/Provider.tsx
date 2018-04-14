@@ -6,25 +6,30 @@ export class Provider extends React.Component<{
   chunk: string;
 }, any> {
 
-  public state = {
-    counter: 0,
-    name: 'Mike'
-  };
+  public state = this.getInitialState();
 
   public render() {
-    const value = {
-      state: this.state,
-      actions: this.actions
-    };
     let Context = {
       'AppContext': AppContext
     }[this.props.chunk];
 
     return (
-      <Context.Provider value={value}>
+      <Context.Provider value={{
+        state: this.state,
+        actions: this.actions
+      }}>
         { this.props.children }
       </Context.Provider>
     );
+  }
+
+  private getInitialState() {
+    if (this.props.chunk === 'AppContext') {
+      return {
+        counter: 0,
+        name: 'Mike'
+      };
+    }
   }
 
   private get actions() {
