@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withContext } from '@utils/withContext';
+import { withContext } from '@utils/index';
 import { Button } from '@components/Button/Button';
 
 import './TodoList.less';
@@ -11,22 +11,6 @@ export class TodoList extends React.Component<{
   actions?: any;
 }, null> {
 
-  public fetchData = () => {
-    const {
-      startFetching,
-      fetchData,
-      endFething,
-      attachPost
-    } = this.props.actions;
-
-    startFetching();
-    fetchData()
-      .then((post: any) => {
-        endFething();
-        attachPost(post);
-    });
-  }
-
   public addTodo = () => {
     const { actions: { addTodo, clearValue }, derived: { value } } = this.props;
     addTodo(value);
@@ -36,9 +20,8 @@ export class TodoList extends React.Component<{
   public render() {
     const {
       actions,
-      derived: { value, todos, loading, post }
+      derived: { value, todos, loading }
     } = this.props;
-    console.log(actions);
     return (
       <div className="todo-list">
         <input
@@ -58,16 +41,6 @@ export class TodoList extends React.Component<{
           text="Remove All"
           action={actions.clearList}
         />
-        <Button
-          disabled={false}
-          className="button"
-          text="Fetch Data"
-          action={this.fetchData}
-        />
-        <div>
-          { !post && 'Post will appear here' }
-          { post && post.body }
-        </div>
         {
           todos.map((todo: any) => {
             return <div key={todo.id}>

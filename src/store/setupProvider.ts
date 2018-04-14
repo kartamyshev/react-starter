@@ -1,5 +1,6 @@
 import { AppContext } from './AppContext';
-import { mapActionsWithoutParams, mapActionsWithParams } from '@utils';
+import { PostsContext } from './PostsContext';
+import { mapActionsWithoutParams, mapActionsWithParams } from '@utils/index';
 
 import {
   clearList,
@@ -14,18 +15,22 @@ import {
 } from './actions';
 
 export const getActionsForChunk = (chunk: string, { context }: any) => {
+  let actionsWithoutParams: any;
+  let actionsWithParams: any;
+  let asyncActions: any;
+
   switch (chunk) {
     case 'App':
-    const actionsWithoutParams: any = mapActionsWithoutParams(
-      { clearList, clearValue, startFetching, endFething },
-      context
-    );
-    const withParams = mapActionsWithParams({
-      addTodo, removeTodo, changeValue, attachPost
-    }, context);
-    const asyncActions: any = { fetchData };
-
-    return { ...actionsWithoutParams, ...withParams, ...asyncActions };
+      actionsWithoutParams = mapActionsWithoutParams({ clearList, clearValue }, context);
+      actionsWithParams = mapActionsWithParams({ addTodo, removeTodo, changeValue }, context);
+      return { ...actionsWithoutParams, ...actionsWithParams, ...asyncActions };
+    case 'Posts':
+      actionsWithoutParams = mapActionsWithoutParams({ startFetching, endFething }, context);
+      actionsWithParams = mapActionsWithParams({ attachPost }, context);
+      asyncActions = { fetchData };
+      return { ...actionsWithoutParams, ...actionsWithParams, ...asyncActions };
+    default:
+      return {};
   }
 };
 
@@ -37,6 +42,13 @@ export const getStateForChunk = (chunk: string) => {
         value: '',
         loading: false
       };
+    case 'Posts':
+      return {
+        loading: false,
+        post: null
+      };
+    default:
+      return {};
   }
 };
 
@@ -44,5 +56,9 @@ export const getContextForChunk = (chunk: string) => {
   switch (chunk) {
     case 'App':
       return AppContext;
+    case 'Posts':
+      return PostsContext;
+    default:
+      throw new Error('PLease specify chunk of the Provider');
   }
 };
