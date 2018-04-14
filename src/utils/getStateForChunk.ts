@@ -1,8 +1,10 @@
 import { CounterContext } from '@store/CounterContext';
 
-export const getContextForChunk = (chunk: string) => {
+export const getStateForChunk = (chunk: string) => {
   switch (chunk) {
     case 'Counter':
-      return CounterContext;
+      return {
+        counter: 0,
+      };
   }
 };

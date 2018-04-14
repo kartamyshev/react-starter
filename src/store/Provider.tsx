@@ -1,39 +1,21 @@
 import * as React from 'react';
 import { getContextForChunk } from '@utils/getContextForChunk';
-import { increment, decrement, changeName } from '@store/actions';
+import { getStateForChunk } from '@utils/getStateForChunk';
+import { getActionsForChunk } from '@utils/getActionsForChunk';
 
 export class Provider extends React.Component<{
   chunk: string;
 }, any> {
-  public state = this.getInitialState();
+  public state = getStateForChunk(this.props.chunk);
+  public actions = getActionsForChunk(this.props.chunk, { context: this });
+  public Context = getContextForChunk(this.props.chunk);
 
   public render() {
-    const Context = getContextForChunk(this.props.chunk);
+    const { state, actions } = this;
     return (
-      <Context.Provider value={{
-        state: this.state,
-        actions: this.actions
-      }}>
+      <this.Context.Provider value={{ state, actions }}>
         { this.props.children }
-      </Context.Provider>
+      </this.Context.Provider>
     );
   }
-
-  private getInitialState() {
-    if (this.props.chunk === 'Counter') {
-      return {
-        counter: 0,
-      };
-    }
-  }
-
-  private get actions() {
-    if (this.props.chunk === 'Counter') {
-      return {
-        increment: () => this.setState(increment),
-        decrement: () => this.setState(decrement),
-      };
-    }
-  }
-
 }

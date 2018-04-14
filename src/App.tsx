@@ -12,10 +12,6 @@ ReactDOM.render(
     <Provider chunk="Counter">
       <Counter />
     </Provider>
-
-    {/* <Provider chunk="AppContext">
-      <ChangeNameButton />
-    </Provider> */}
   </Fragment>,
   document.getElementById('application-container')
 );

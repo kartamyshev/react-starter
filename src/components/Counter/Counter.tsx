@@ -22,7 +22,7 @@ export class Counter extends React.Component<{
             action={this.props.actions.decrement}
           />
           <Button
-            disabled={this.props.derived.counter === 10}
+            disabled={this.props.derived.counter > 9}
             className="button"
             text="+"
             action={this.props.actions.increment}
