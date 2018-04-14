@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { AppContext } from '@store/AppContext';
 
-export const withContext = (Context: any) => (Component: any) => (props: any) => {
+export const withContext = (key: any) => (Component: any) => (props: any) => {
+  const Context = {AppContext}[key];
   return <Context.Consumer>
     {(context: any) => {
       return <Component

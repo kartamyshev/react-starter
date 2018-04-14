@@ -5,7 +5,7 @@ import { Button } from '@components/Button/Button';
 
 import './Counter.less';
 
-@withContext(AppContext)
+@withContext('AppContext')
 export class Counter extends React.Component<{
   own?: any;
   derived?: any;
@@ -28,11 +28,6 @@ export class Counter extends React.Component<{
             className="button"
             text="+"
             action={this.props.actions.increment}
-          />
-          <Button
-            className="button"
-            text="Change Name"
-            action={this.props.actions.changeName('John')}
           />
         </div>
       </div>
