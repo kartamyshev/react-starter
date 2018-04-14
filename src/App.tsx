@@ -7,7 +7,7 @@ import { ChangeNameButton } from '@components/ChangeNameButton/ChangeNameButton'
 import '@css/base.less';
 
 ReactDOM.render(
-  <Provider>
+  <Provider chunk="AppContext">
     <Counter />
     <ChangeNameButton />
   </Provider>,

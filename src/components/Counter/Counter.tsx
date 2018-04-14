@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { withContext } from '@utils/withContext';
-import { AppContext } from '@store/AppContext';
 import { Button } from '@components/Button/Button';
 
 import './Counter.less';
