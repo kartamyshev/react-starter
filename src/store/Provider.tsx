@@ -1,16 +1,14 @@
 import * as React from 'react';
 import {
-  getContextForChunk,
-  getStateForChunk,
-  getActionsForChunk
+  getContext,
+  getInitialState,
+  getActions
 } from './setupProvider';
 
-export class Provider extends React.Component<{
-  chunk: string;
-}, any> {
-  public state = getStateForChunk(this.props.chunk);
-  public actions = getActionsForChunk(this.props.chunk, { context: this });
-  public Context = getContextForChunk(this.props.chunk);
+export class Provider extends React.Component<null, any> {
+  public state = getInitialState();
+  public actions = getActions(this);
+  public Context = getContext();
 
   public render() {
     const { state, actions } = this;

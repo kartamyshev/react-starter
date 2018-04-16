@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { getContextForChunk } from '@store/setupProvider';
+import { getContext, getActions } from '@store/setupProvider';
 
-export const withContext = (chunk: any) => (Component: any) => (props: any) => {
-  const Context = getContextForChunk(chunk);
+export const connect = (options?: any) => (Component: any) => (props: any) => {
+  const Context = getContext();
 
   return <Context.Consumer>
     {(context: any) => {

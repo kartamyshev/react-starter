@@ -8,11 +8,11 @@ import '@css/base.less';
 
 ReactDOM.render(
   <Fragment>
-    <Provider chunk="App">
+    <Provider>
       <TodoList />
     </Provider>
     <hr/>
-    <Provider chunk="Posts">
+    <Provider>
       <Posts />
     </Provider>
   </Fragment>,

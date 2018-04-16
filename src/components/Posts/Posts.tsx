@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { withContext } from '@utils/index';
+import { connect } from '@utils/index';
 import { Button } from '@components/Button/Button';
 
 import './Posts.less';
 
-@withContext('Posts')
+@connect()
 export class Posts extends React.Component<{
   own?: any;
   derived?: any;
