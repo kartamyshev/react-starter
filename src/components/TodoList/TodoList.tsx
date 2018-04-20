@@ -5,29 +5,28 @@ import { Button } from '@components/Button/Button';
 import './TodoList.less';
 
 @connect()
-export class TodoList extends React.Component<{
-  own?: any;
-  derived?: any;
-  actions?: any;
-}, null> {
-
+export class TodoList extends React.Component<
+  {
+    own?: any;
+    derived?: any;
+    actions?: any;
+  },
+  null
+> {
   public addTodo = () => {
     const { actions: { addTodo, clearValue }, derived: { value } } = this.props;
     addTodo(value);
     clearValue();
-  }
+  };
 
   public clearList = () => {
     const { actions: { clearList, clearValue } } = this.props;
     clearList();
     clearValue();
-  }
+  };
 
   public render() {
-    const {
-      actions,
-      derived: { value, todos, loading }
-    } = this.props;
+    const { actions, derived: { value, todos, loading } } = this.props;
     return (
       <div className="todo-list">
         <input
@@ -47,18 +46,18 @@ export class TodoList extends React.Component<{
           text="Remove All"
           action={this.clearList}
         />
-        {
-          todos.map((todo: any) => {
-            return <div key={todo.id}>
+        {todos.map((todo: any) => {
+          return (
+            <div key={todo.id}>
               {todo.id}: {todo.text}
               <Button
                 className="button"
                 text="x"
-                action={() => actions.removeTodo(todo.id) }
+                action={() => actions.removeTodo(todo.id)}
               />
-            </div>;
-          })
-        }
+            </div>
+          );
+        })}
       </div>
     );
   }
