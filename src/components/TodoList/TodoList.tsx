@@ -20,7 +20,7 @@ export class TodoList extends React.Component<
   };
 
   public clearList = () => {
-    const { actions: { clearList, clearValue } } = this.props;
+    const { actions: { clearList, clearValue, fetchPost } } = this.props;
     clearList();
     clearValue();
   };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getContext, getActions } from '@store/setupProvider';
+import { getContext, getActions } from '@store/setup-provider';
 
 export const connect = (options?: any) => (Component: any) => (props: any) => {
   const Context = getContext();

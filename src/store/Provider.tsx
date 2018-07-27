@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  getContext,
-  getInitialState,
-  getActions
-} from './setupProvider';
+import { getContext, getInitialState, getActions } from './setup-provider';
 
 export class Provider extends React.Component<null, any> {
   public state = getInitialState();
@@ -12,9 +8,10 @@ export class Provider extends React.Component<null, any> {
 
   public render() {
     const { state, actions } = this;
+
     return (
       <this.Context.Provider value={{ state, actions }}>
-        { this.props.children }
+        {this.props.children}
       </this.Context.Provider>
     );
   }
