@@ -1,12 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Provider } from '@store/Provider';
-import { TodoList } from '@components/TodoList/TodoList';
+
+import { AppProvider } from '@store/AppProvider';
+import { Button } from '@components/Button';
+
 import '@css/base.less';
 
 ReactDOM.render(
-  <Provider>
-    <TodoList />
-  </Provider>,
+  <AppProvider>
+    <Button />
+  </AppProvider>,
   document.getElementById('application-container')
 );
