@@ -4,8 +4,8 @@ import { AppContext, IApplicationState } from '../store/AppContext';
 export class AppProvider extends React.Component<any, IApplicationState> {
   public state = {
     theme: 'light',
-    changeTheme: name => {
-      this.setState(prevState => {
+    changeTheme: (name: string) => {
+      this.setState((prevState: IApplicationState) => {
         return { theme: name };
       });
     }

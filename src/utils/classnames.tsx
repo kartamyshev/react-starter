@@ -1,5 +1,5 @@
-export const classnames = obj => {
+export const classnames = (obj: any) => {
   return Object.keys(obj)
-    .filter(className => className !== 'undefined' && obj[className])
+    .filter((className: string) => className !== 'undefined' && obj[className])
     .join(' ');
 };
