@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { AppProvider } from '@store/AppProvider';
-import { Button } from '@components/Button';
+import { AppProvider } from '@store';
+import { EntryPoint } from '@components/EntryPoint';
 
 import '@css/base.less';
 
 ReactDOM.render(
   <AppProvider>
-    <Button />
+    <EntryPoint />
   </AppProvider>,
   document.getElementById('application-container')
 );
