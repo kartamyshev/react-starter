@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { AppContext } from '@store';
 
-export const connect = (part: string) => (Component: any) => (
+export const connect = (parts: string[]) => (Component: any) => (
   ownProps: any
 ) => {
   return (
     <AppContext.Consumer>
       {(state: any) => {
-        return <Component derived={state[part]} own={ownProps} />;
+        const derived = parts.reduce((agg, part) => {
+          agg[part] = state[part];
+          return agg;
+        }, {});
+        return <Component derived={derived} own={ownProps} />;
       }}
     </AppContext.Consumer>
   );

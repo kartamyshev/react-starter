@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { connect } from '@store';
 import { classnames } from '@utils';
+import { ButtonComponent as Button } from '@components/button/button-component';
 
 import './entry-point.component.less';
 
-@connect('theme')
+@connect(['theme'])
 export class EntryPoint extends React.Component<any, null> {
   public render() {
-    const { name } = this.props.derived;
+    const { name } = this.props.derived.theme;
 
     return (
       <div className={this.className}>
@@ -18,27 +19,11 @@ export class EntryPoint extends React.Component<any, null> {
   }
 
   private get className() {
-    const { name } = this.props.derived;
+    const { name } = this.props.derived.theme;
     return classnames({
       'entry-point': true,
       'entry-point--light': name === 'light',
       'entry-point--dark': name === 'dark'
     });
-  }
-}
-
-@connect('theme')
-class Button extends React.Component<any, any> {
-  public render() {
-    const {
-      derived: { change },
-      own: { themeName, label, disabled }
-    } = this.props;
-
-    return (
-      <button disabled={disabled} onClick={() => change(themeName)}>
-        {label}
-      </button>
-    );
   }
 }

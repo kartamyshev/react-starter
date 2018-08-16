@@ -10,6 +10,10 @@ export class AppProvider extends React.Component<any, IApplicationState> {
           return Object.assign(prevState.theme, { name });
         });
       }
+    },
+    size: {
+      width: 200,
+      height: 30
     }
   };
 
