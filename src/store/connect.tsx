@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { IApplicationState } from '@store';
+import { AppContext } from '@store';
 
-export const connect = (Context: any) => (Component: any) => (
+export const connect = (part: string) => (Component: any) => (
   ownProps: any
 ) => {
   return (
-    <Context.Consumer>
-      {(state: IApplicationState) => {
-        const props = { ...ownProps, ...state };
-        return <Component {...props} />;
+    <AppContext.Consumer>
+      {(state: any) => {
+        return <Component derived={state[part]} own={ownProps} />;
       }}
-    </Context.Consumer>
+    </AppContext.Consumer>
   );
 };

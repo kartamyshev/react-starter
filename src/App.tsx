@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { AppProvider } from '@store';
-import { EntryPoint } from '@components/EntryPoint';
+import { EntryPoint } from '@components/entry-point';
 
 import '@css/base.less';
 
