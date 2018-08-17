@@ -1,4 +1,4 @@
-import { IApplicationState } from './';
+import { IApplicationState } from '@store/interfaces';
 
 export const data = (context: any) => {
   return {

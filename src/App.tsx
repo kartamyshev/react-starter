@@ -3,7 +3,9 @@ import * as ReactDOM from 'react-dom';
 
 import { Provider } from './here-is-the-library-name/Provider';
 import { EntryPoint } from '@components/entry-point';
-import { theme, data, IApplicationState } from './store';
+import { theme, data } from '@store/parts';
+
+import { IApplicationState } from '@store/interfaces';
 
 import '@css/base.less';
 

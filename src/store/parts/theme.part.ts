@@ -1,4 +1,4 @@
-import { IApplicationState } from './';
+import { IApplicationState } from '@store/interfaces';
 
 export const theme = (context: any) => {
   return {
