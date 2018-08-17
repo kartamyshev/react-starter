@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppContext } from '@store';
+import { AppContext } from '@store/AppContext';
 
 export const connect = (parts: string[]) => (Component: any) => (
   ownProps: any

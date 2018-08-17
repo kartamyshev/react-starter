@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ISize, connect } from '../../store';
+import { ISize, connect } from '@store/index';
 
 @connect(['size'])
 export class ButtonComponent extends React.Component<

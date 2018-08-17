@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect, ITheme } from '../../store';
+import { connect, ITheme } from '@store/index';
 import { classnames } from '@utils/classnames';
 import { ButtonComponent as Button } from '@components/button/button-component';
 

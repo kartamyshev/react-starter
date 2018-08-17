@@ -11,10 +11,11 @@
     "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {
+      "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@css/*": ["css/*"],
-      "@utils/*": ["utils/*"],
-      "@assets/*": ["assets/*"],
+      "@store/*": ["store/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "exclude": [
