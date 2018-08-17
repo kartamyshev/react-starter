@@ -1,22 +1,6 @@
 import * as React from 'react';
-
-export interface ITheme {
-  name: string;
-  change: (name: string) => void;
-}
-
-interface ITodo {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-export interface IData {
-  todo: ITodo;
-  fetchTodo: any;
-  removeTodo: any;
-}
+import { ITheme } from '@store/state-parts/theme';
+import { IData } from '@store/state-parts/data';
 
 export interface IApplicationState {
   theme?: ITheme;

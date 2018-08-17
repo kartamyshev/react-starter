@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { connect, ITheme, IData } from '@store/index';
+import { connect } from '@store/index';
 import { classnames } from '@utils/classnames';
 import { ButtonComponent as Button } from '@components/button/button-component';
+
+import { ITheme } from '@store/state-parts/theme';
+import { IData } from '@store/state-parts/data';
 
 import './entry-point.component.less';
 
@@ -31,8 +34,18 @@ export class EntryPoint extends React.Component<
           disabled={name === 'light'}
           label="Light"
         />
-        <Button onClick={this.fetchTodo} label="Fetch Todo" />
-        <Button onClick={removeTodo} label="Remove Todo" />
+        <br />
+        <br />
+        <Button
+          disabled={todo !== null}
+          onClick={this.fetchTodo}
+          label="Fetch Todo"
+        />
+        <Button
+          disabled={todo === null}
+          onClick={removeTodo}
+          label="Remove Todo"
+        />
         <br />
         {todo ? this.renderTodo(todo) : 'No todo available'}
       </div>

@@ -1,3 +1,16 @@
+interface ITodo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+export interface IData {
+  todo: ITodo;
+  fetchTodo: any;
+  removeTodo: any;
+}
+
 export const data = (context: any) => {
   return {
     todo: null,
