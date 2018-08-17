@@ -1,14 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { AppProvider } from '@store';
+import { Provider } from '@store/Provider';
 import { EntryPoint } from '@components/entry-point';
 
 import '@css/base.less';
 
+import { theme } from './store/state-parts/theme';
+import { data } from './store/state-parts/data';
+
 ReactDOM.render(
-  <AppProvider>
+  <Provider parts={{ theme, data }}>
     <EntryPoint />
-  </AppProvider>,
+  </Provider>,
   document.getElementById('application-container')
 );
