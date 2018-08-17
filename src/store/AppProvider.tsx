@@ -1,21 +1,8 @@
 import * as React from 'react';
 import { AppContext, IApplicationState } from '../store/AppContext';
 
-const theme = context => {
-  return {
-    name: 'light',
-    change: (name: string) => {
-      context.setState((prevState: any) => {
-        return Object.assign(prevState.theme, { name });
-      });
-    }
-  };
-};
-
-const size = {
-  width: 200,
-  height: 30
-};
+import { theme } from './state-parts/theme';
+import { size } from './state-parts/size';
 
 export class AppProvider extends React.Component<any, IApplicationState> {
   public state = {
