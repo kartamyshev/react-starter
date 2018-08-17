@@ -3,7 +3,7 @@ import { connect } from '@store/index';
 import { classnames } from '@utils/classnames';
 import { ButtonComponent as Button } from '@components/button/button-component';
 
-import { ITheme, IData } from '@store/interfaces';
+import { ITheme, IData, ITodo } from '@store/interfaces';
 
 import './entry-point.component.less';
 
@@ -51,7 +51,7 @@ export class EntryPoint extends React.Component<
     );
   }
 
-  private renderTodo(todo: any) {
+  private renderTodo(todo: ITodo) {
     return (
       <div>
         userId - {todo.userId}

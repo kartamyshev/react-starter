@@ -30,7 +30,7 @@ ReactDOM.render(
 
 
 `<Provider />` accepts one parameter called `parts`.  
-This is an array of objects (kinda like reducers in Redux terminology, or stores in MobX).
+Kinda like reducers in Redux terminology, or stores in MobX.
 
 ```javascript
 ReactDOM.render(
@@ -267,7 +267,7 @@ export class EntryPoint extends React.Component<
     );
   }
 
-  private renderTodo(todo: any) {
+  private renderTodo(todo: ITodo) {
     return (
       <div>
         userId - {todo.userId}
