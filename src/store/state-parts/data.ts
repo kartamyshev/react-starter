@@ -1,15 +1,4 @@
-interface ITodo {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-export interface IData {
-  todo: ITodo;
-  fetchTodo: any;
-  removeTodo: any;
-}
+import { IApplicationState } from '@store/AppContext';
 
 export const data = (context: any) => {
   return {
@@ -18,13 +7,13 @@ export const data = (context: any) => {
       fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
         .then((response: any) => response.json())
         .then((todo: any) => {
-          context.setState((prevState: any) => {
+          context.setState((prevState: IApplicationState) => {
             return Object.assign(prevState.data, { todo });
           });
         });
     },
     removeTodo() {
-      context.setState((prevState: any) => {
+      context.setState((prevState: IApplicationState) => {
         return Object.assign(prevState.data, { todo: null });
       });
     }

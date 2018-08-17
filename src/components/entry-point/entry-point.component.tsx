@@ -3,8 +3,7 @@ import { connect } from '@store/index';
 import { classnames } from '@utils/classnames';
 import { ButtonComponent as Button } from '@components/button/button-component';
 
-import { ITheme } from '@store/state-parts/theme';
-import { IData } from '@store/state-parts/data';
+import { ITheme, IData } from '@store/interfaces';
 
 import './entry-point.component.less';
 

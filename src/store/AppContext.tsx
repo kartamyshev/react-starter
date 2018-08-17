@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ITheme } from '@store/state-parts/theme';
-import { IData } from '@store/state-parts/data';
+import { ITheme, IData } from '@store/interfaces';
 
 export interface IApplicationState {
   theme?: ITheme;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { connect } from '@store/index';
 
 export class ButtonComponent extends React.Component<
   {
