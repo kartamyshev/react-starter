@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from '@store/index';
+import { connect } from '../../here-is-the-library-name/connect';
 import { classnames } from '@utils/classnames';
 import { ButtonComponent as Button } from '@components/button/button-component';
 

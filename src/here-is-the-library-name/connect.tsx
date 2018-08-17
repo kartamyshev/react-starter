@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { AppContext } from '@store/AppContext';
+import { Context } from './Provider';
 
 export const connect = (parts: string[]) => (Component: any) => (
   ownProps: any
 ) => {
   return (
-    <AppContext.Consumer>
+    <Context.Consumer>
       {(state: any) => {
         const derived = parts.reduce((agg, part) => {
           agg[part] = state[part];
@@ -13,6 +13,6 @@ export const connect = (parts: string[]) => (Component: any) => (
         }, {});
         return <Component derived={derived} {...ownProps} />;
       }}
-    </AppContext.Consumer>
+    </Context.Consumer>
   );
 };

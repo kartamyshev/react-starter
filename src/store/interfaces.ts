@@ -18,4 +18,10 @@ export interface IData {
   removeTodo: any;
 }
 
+// application state
+export interface IApplicationState {
+  theme?: ITheme;
+  data?: IData;
+}
+
 // rest interfaces here

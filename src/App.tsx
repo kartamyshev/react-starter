@@ -1,16 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Provider } from '@store/Provider';
+import { Provider } from './here-is-the-library-name/Provider';
 import { EntryPoint } from '@components/entry-point';
+import { theme, data, IApplicationState } from './store';
 
 import '@css/base.less';
 
-import { theme } from './store/state-parts/theme';
-import { data } from './store/state-parts/data';
+const AppContext: React.Context<IApplicationState> = React.createContext(null);
 
 ReactDOM.render(
-  <Provider parts={{ theme, data }}>
+  <Provider context={AppContext} parts={{ theme, data }}>
     <EntryPoint />
   </Provider>,
   document.getElementById('application-container')

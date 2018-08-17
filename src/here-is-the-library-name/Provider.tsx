@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { AppContext, IApplicationState } from '@store/AppContext';
 
+export let Context;
 export class Provider extends React.Component<
   {
+    context: React.Context<any>;
     parts: any;
   },
-  IApplicationState
+  any
 > {
   public state = this.initializeState();
+  constructor(props) {
+    super(props);
+    Context = this.props.context;
+  }
 
   public render() {
     return (
-      <AppContext.Provider value={this.state}>
+      <Context.Provider value={this.state}>
         {this.props.children}
-      </AppContext.Provider>
+      </Context.Provider>
     );
   }
 
