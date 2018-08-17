@@ -11,7 +11,7 @@ export const connect = (parts: string[]) => (Component: any) => (
           agg[part] = state[part];
           return agg;
         }, {});
-        return <Component derived={derived} own={ownProps} />;
+        return <Component derived={derived} {...ownProps} />;
       }}
     </AppContext.Consumer>
   );
