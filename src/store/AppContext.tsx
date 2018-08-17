@@ -5,14 +5,22 @@ export interface ITheme {
   change: (name: string) => void;
 }
 
-export interface ISize {
-  width: number;
-  height: number;
+interface ITodo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+export interface IData {
+  todo: ITodo;
+  fetchTodo: any;
+  removeTodo: any;
 }
 
 export interface IApplicationState {
   theme?: ITheme;
-  size?: ISize;
+  data?: IData;
 }
 
 export const AppContext: React.Context<IApplicationState> = React.createContext(

@@ -1,24 +1,25 @@
 import * as React from 'react';
-import { ISize, connect } from '@store/index';
+import { connect } from '@store/index';
 
-@connect(['size'])
 export class ButtonComponent extends React.Component<
   {
-    derived?: {
-      size: ISize;
-    };
     label: string;
-    disabled: boolean;
+    disabled?: boolean;
     onClick: () => void;
   },
   null
 > {
+  public componentDidMount() {}
+
   public render() {
-    const { width, height } = this.props.derived.size;
     const { label, disabled, onClick } = this.props;
 
     return (
-      <button style={{ width, height }} disabled={disabled} onClick={onClick}>
+      <button
+        style={{ width: 200, height: 30 }}
+        disabled={disabled}
+        onClick={onClick}
+      >
         {label}
       </button>
     );
