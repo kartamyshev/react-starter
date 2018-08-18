@@ -1,81 +1,37 @@
 import * as React from 'react';
-import { connect } from '../../here-is-the-library-name/connect';
-import { classnames } from '@utils/classnames';
-import { ButtonComponent as Button } from '@components/button/button-component';
+import { observer } from 'mobx-react';
+import { AppStore } from '@stores/app.store';
 
-import { ITheme, IData, ITodo } from '@store/interfaces';
+const TodoItem = observer(({ todo }) => (
+  <li>
+    <input
+      type="checkbox"
+      checked={todo.finished}
+      onChange={() => (todo.finished = !todo.finished)}
+    />
+    {todo.title}
+  </li>
+));
 
-import './entry-point.component.less';
-
-@connect(['theme', 'data'])
+@observer
 export class EntryPoint extends React.Component<
   {
-    derived?: {
-      theme: ITheme;
-      data: IData;
+    stores: {
+      appStore: AppStore;
     };
   },
-  null
+  any
 > {
   public render() {
-    const { name, change } = this.props.derived.theme;
-    const { todo, removeTodo } = this.props.derived.data;
-
-    return (
-      <div className={this.className}>
-        <Button
-          onClick={() => change('dark')}
-          disabled={name === 'dark'}
-          label="Dark"
-        />
-        <Button
-          onClick={() => change('light')}
-          disabled={name === 'light'}
-          label="Light"
-        />
-        <br />
-        <br />
-        <Button
-          disabled={todo !== null}
-          onClick={this.fetchTodo}
-          label="Fetch Todo"
-        />
-        <Button
-          disabled={todo === null}
-          onClick={removeTodo}
-          label="Remove Todo"
-        />
-        <br />
-        {todo ? this.renderTodo(todo) : 'No todo available'}
-      </div>
-    );
-  }
-
-  private renderTodo(todo: ITodo) {
     return (
       <div>
-        userId - {todo.userId}
-        <br />
-        id - {todo.id}
-        <br />
-        title - {todo.title}
-        <br />
-        completed - {todo.completed.toString()}
-        <br />
+        <ul>
+          {this.props.stores.appStore.todos.map(todo => (
+            <TodoItem todo={todo} key={todo.id} />
+          ))}
+        </ul>
+        Tasks left: {this.props.stores.appStore.unfinishedTodoCount}
       </div>
     );
-  }
-
-  private fetchTodo = () => {
-    this.props.derived.data.fetchTodo(1);
-  };
-
-  private get className() {
-    const { name } = this.props.derived.theme;
-    return classnames({
-      'entry-point': true,
-      'entry-point--light': name === 'light',
-      'entry-point--dark': name === 'dark'
-    });
   }
 }

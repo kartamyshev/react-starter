@@ -64,7 +64,7 @@ module.exports = {
       '@components': path.resolve(__dirname, 'src', 'components'),
       '@css': path.resolve(__dirname, 'src', 'css'),
       '@utils': path.resolve(__dirname, 'src', 'utils'),
-      '@store': path.resolve(__dirname, 'src', 'store')
+      '@stores': path.resolve(__dirname, 'src', 'stores')
     }
   }
 };
