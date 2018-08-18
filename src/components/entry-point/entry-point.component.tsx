@@ -1,17 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { AppStore } from '@stores/app.store';
-
-const TodoItem = observer(({ todo }) => (
-  <li>
-    <input
-      type="checkbox"
-      checked={todo.finished}
-      onChange={() => (todo.finished = !todo.finished)}
-    />
-    {todo.title}
-  </li>
-));
+import { TodoItem } from '@components/TodoItem';
 
 @observer
 export class EntryPoint extends React.Component<
@@ -26,7 +16,7 @@ export class EntryPoint extends React.Component<
     return (
       <div>
         <ul>
-          {this.props.stores.appStore.todos.map(todo => (
+          {this.props.stores.appStore.todos.map((todo: any) => (
             <TodoItem todo={todo} key={todo.id} />
           ))}
         </ul>

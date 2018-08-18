@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 export class AppStore {
   @observable public todos = [
@@ -7,7 +7,8 @@ export class AppStore {
     { id: 3, finished: false },
     { id: 4, finished: false }
   ];
+
   @computed get unfinishedTodoCount() {
-      return this.todos.filter((todo) => !todo.finished).length;
+    return this.todos.filter((todo: any) => !todo.finished).length;
   }
 }
