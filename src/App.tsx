@@ -7,12 +7,12 @@ import { AppStore } from '@stores/app.store';
 import { ConfigStore } from '@stores/config.store';
 import { Provider } from 'mobx-react';
 
-// configure({
-//   enforceActions: true
-// });
+configure({
+  enforceActions: true
+});
 
-const appStore = new AppStore();
 const configStore = new ConfigStore();
+const appStore = new AppStore(configStore);
 
 ReactDOM.render(
   <Provider appStore={appStore} configStore={configStore}>

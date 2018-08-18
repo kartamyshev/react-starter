@@ -25,11 +25,7 @@ export class EntryPoint extends React.Component<
       <div>
         <ul>
           {todos.map((todo: any) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onChange={() => toggleFinished(todo)}
-            />
+            <TodoItem key={todo.id} todo={todo} onChange={toggleFinished} />
           ))}
         </ul>
         Tasks left: {unfinishedTodoCount}
