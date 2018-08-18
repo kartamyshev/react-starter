@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
+
 import { AppStore } from '@stores/app.store';
 import { ConfigStore } from '@stores/config.store';
-import { TodoItem } from '@components/TodoItem';
+import { classnames } from '@utils/classnames';
+
+import './entry-point.component.less';
 
 @inject('appStore', 'configStore')
 @observer
@@ -11,25 +14,23 @@ export class EntryPoint extends React.Component<
     appStore?: AppStore;
     configStore?: ConfigStore;
   },
-  any
+  null
 > {
   public render() {
-    const {
-      toggleFinished,
-      clearTodoList,
-      unfinishedTodoCount,
-      todos
-    } = this.props.appStore;
+    const { dataCount } = this.props.appStore;
+    const { language$, toggleTheme, theme$ } = this.props.configStore;
 
+    const className = classnames({
+      'entry-point': true,
+      'entry-point--light': theme$ === 'light',
+      'entry-point--dark': theme$ === 'dark'
+    });
     return (
-      <div>
-        <ul>
-          {todos.map((todo: any) => (
-            <TodoItem key={todo.id} todo={todo} onChange={toggleFinished} />
-          ))}
-        </ul>
-        Tasks left: {unfinishedTodoCount}
-        <button onClick={clearTodoList}>Clear List</button>
+      <div className={className}>
+        Entry Point Component <br />
+        Amount of items in data array of app store - {dataCount} <br />
+        Language from Config Store - {language$} <br />
+        <button onClick={toggleTheme}>Toggle theme</button>
       </div>
     );
   }
