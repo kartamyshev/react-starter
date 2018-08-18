@@ -11,4 +11,9 @@ export class AppStore {
   @computed get unfinishedTodoCount() {
     return this.todos.filter((todo: any) => !todo.finished).length;
   }
+
+  @action public clearTodoList = () => {
+    this.todos = [];
+  }
+
 }

@@ -21,6 +21,9 @@ export class EntryPoint extends React.Component<
           ))}
         </ul>
         Tasks left: {this.props.stores.appStore.unfinishedTodoCount}
+        <button onClick={this.props.stores.appStore.clearTodoList}>
+          Clear List
+        </button>
       </div>
     );
   }
