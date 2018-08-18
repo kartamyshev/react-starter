@@ -1,81 +1,37 @@
 import * as React from 'react';
-import { connect } from '../../here-is-the-library-name/connect';
-import { classnames } from '@utils/classnames';
-import { ButtonComponent as Button } from '@components/button/button-component';
+import { observer, inject } from 'mobx-react';
 
-import { ITheme, IData, ITodo } from '@store/interfaces';
+import { AppStore } from '@stores/app.store';
+import { ConfigStore } from '@stores/config.store';
+import { classnames } from '@utils/classnames';
 
 import './entry-point.component.less';
 
-@connect(['theme', 'data'])
+@inject('appStore', 'configStore')
+@observer
 export class EntryPoint extends React.Component<
   {
-    derived?: {
-      theme: ITheme;
-      data: IData;
-    };
+    appStore?: AppStore;
+    configStore?: ConfigStore;
   },
   null
 > {
   public render() {
-    const { name, change } = this.props.derived.theme;
-    const { todo, removeTodo } = this.props.derived.data;
+    const { dataCount } = this.props.appStore;
+    const { language$, toggleTheme, theme$ } = this.props.configStore;
 
-    return (
-      <div className={this.className}>
-        <Button
-          onClick={() => change('dark')}
-          disabled={name === 'dark'}
-          label="Dark"
-        />
-        <Button
-          onClick={() => change('light')}
-          disabled={name === 'light'}
-          label="Light"
-        />
-        <br />
-        <br />
-        <Button
-          disabled={todo !== null}
-          onClick={this.fetchTodo}
-          label="Fetch Todo"
-        />
-        <Button
-          disabled={todo === null}
-          onClick={removeTodo}
-          label="Remove Todo"
-        />
-        <br />
-        {todo ? this.renderTodo(todo) : 'No todo available'}
-      </div>
-    );
-  }
-
-  private renderTodo(todo: ITodo) {
-    return (
-      <div>
-        userId - {todo.userId}
-        <br />
-        id - {todo.id}
-        <br />
-        title - {todo.title}
-        <br />
-        completed - {todo.completed.toString()}
-        <br />
-      </div>
-    );
-  }
-
-  private fetchTodo = () => {
-    this.props.derived.data.fetchTodo(1);
-  };
-
-  private get className() {
-    const { name } = this.props.derived.theme;
-    return classnames({
+    const className = classnames({
       'entry-point': true,
-      'entry-point--light': name === 'light',
-      'entry-point--dark': name === 'dark'
+      'entry-point--light': theme$ === 'light',
+      'entry-point--dark': theme$ === 'dark'
     });
+    return (
+      <div className={className}>
+        Entry Point Component <br />
+        Amount of items in data array of app store - {dataCount} <br />
+        Language from Config Store - {language$} <br />
+        <button onClick={toggleTheme}>Toggle theme</button>
+      </div>
+    );
   }
 }
