@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
-export const TodoItem = observer(({ todo }) => (
-  <li>
-    <input
-      type="checkbox"
-      checked={todo.finished}
-      onChange={() => (todo.finished = !todo.finished)}
-    />
-    {todo.title}
-  </li>
-));
+@observer
+export class TodoItem extends React.Component<any, any> {
+  public render() {
+    const { todo, onChange } = this.props;
+    return (
+      <li>
+        <input type="checkbox" checked={todo.finished} onChange={onChange} />
+        {todo.title}
+      </li>
+    );
+  }
+}

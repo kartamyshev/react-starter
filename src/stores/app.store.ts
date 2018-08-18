@@ -16,4 +16,9 @@ export class AppStore {
     this.todos = [];
   }
 
+  @action public toggleFinished = (todo) => {
+    const index = this.todos.indexOf(todo);
+    this.todos[index].finished = !this.todos[index].finished;
+  }
+
 }
