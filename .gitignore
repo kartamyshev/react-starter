@@ -3,3 +3,5 @@ todo
 dist
 typings/
 README.md
+yarn-error.log
+help
