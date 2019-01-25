@@ -1,9 +1,13 @@
-import { observable, action, computed } from 'mobx';
-import axios from 'axios';
+import { observable, action } from 'mobx';
+
+enum Theme {
+  Light = 'light',
+  Dark = 'dark',
+}
 
 export class ConfigStore {
   @observable public language$: string = null;
-  @observable public theme$: 'light' | 'dark' = 'light';
+  @observable public theme$: Theme = Theme.Light;
 
   public constructor() {
     this.attachLanguage();
@@ -11,14 +15,7 @@ export class ConfigStore {
 
   @action.bound
   public async toggleTheme() {
-    const theme = this.theme$ === 'dark' ? 'light' : 'dark';
-    const { data: themeName } = await axios.post('http://localhost:3000/toggleTheme', { theme });
-
-    this.updateTheme(themeName);
-  }
-
-  @action.bound private updateTheme(name) {
-    this.theme$ = name;
+    this.theme$ = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
   }
 
   private attachLanguage() {

@@ -1,5 +1,5 @@
 import { ConfigStore } from '@stores/config.store';
-import { observable, computed, action } from 'mobx';
+import { observable, computed } from 'mobx';
 
 interface IData {
   id: number;
