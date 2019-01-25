@@ -5,8 +5,13 @@ enum Theme {
   Dark = 'dark',
 }
 
+enum Language {
+  En = 'en',
+  De = 'de'
+}
+
 export class ConfigStore {
-  @observable private _language$: string = null;
+  @observable private _language$: Language = null;
   @observable private _theme$: Theme = Theme.Light;
 
   public constructor() {
@@ -28,14 +33,15 @@ export class ConfigStore {
   }
 
   @computed
-  public get language$(): string {
+  public get language$(): Language {
     return this._language$;
   }
-  public set language$(value: string) {
+  public set language$(value: Language) {
     this._language$ = value;
   }
 
   private attachLanguage() {
-    this.language$ = Math.random() > .5 ? 'en' : 'de';
+    const language = Math.random() > .5 ? Language.En : Language.De;
+    this.language$ = language;
   }
 }
