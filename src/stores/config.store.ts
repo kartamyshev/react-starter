@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 
 enum Theme {
   Light = 'light',
@@ -6,16 +6,33 @@ enum Theme {
 }
 
 export class ConfigStore {
-  @observable public language$: string = null;
-  @observable public theme$: Theme = Theme.Light;
+  @observable private _language$: string = null;
+  @observable private _theme$: Theme = Theme.Light;
 
   public constructor() {
     this.attachLanguage();
   }
 
   @action.bound
-  public async toggleTheme() {
-    this.theme$ = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
+  public toggleTheme() {
+    const theme = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
+    this.theme$ = theme;
+  }
+
+  @computed
+  public get theme$(): Theme {
+    return this._theme$;
+  }
+  public set theme$(value: Theme) {
+    this._theme$ = value;
+  }
+
+  @computed
+  public get language$(): string {
+    return this._language$;
+  }
+  public set language$(value: string) {
+    this._language$ = value;
   }
 
   private attachLanguage() {
