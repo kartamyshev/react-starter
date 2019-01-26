@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx';
 
-enum Theme {
+export enum Theme {
   Light = 'light',
   Dark = 'dark',
 }

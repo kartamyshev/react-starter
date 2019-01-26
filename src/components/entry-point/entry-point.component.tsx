@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 
 import { AppStore } from '@stores/app.store';
-import { ConfigStore } from '@stores/config.store';
+import { ConfigStore, Theme } from '@stores/config.store';
 import { classnames } from '@utils/classnames';
 
 import './entry-point.component.less';
@@ -22,8 +22,8 @@ export class EntryPoint extends React.Component<
 
     const className = classnames({
       'entry-point': true,
-      'entry-point--light': theme$ === 'light',
-      'entry-point--dark': theme$ === 'dark'
+      'entry-point--light': theme$ === Theme.Light,
+      'entry-point--dark': theme$ === Theme.Dark
     });
     return (
       <div className={className}>
