@@ -12,10 +12,10 @@ export class AppStore {
     { id: 3 },
     { id: 4 }
   ];
-  private configStore: ConfigStore;
 
-  public constructor(configStore) {
-    this.configStore = configStore;
+  public constructor(
+    private configStore: ConfigStore
+  ) {
     this.initializeData();
   }
 
