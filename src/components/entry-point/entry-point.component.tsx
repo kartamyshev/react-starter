@@ -7,15 +7,21 @@ import { classnames } from '@utils/classnames';
 
 import './entry-point.component.less';
 
+interface IEntryPointsProps {
+  appStore?: AppStore;
+  configStore?: ConfigStore;
+}
+
 @inject('appStore', 'configStore')
 @observer
-export class EntryPoint extends React.Component<
-  {
-    appStore?: AppStore;
-    configStore?: ConfigStore;
-  },
-  null
-> {
+export class EntryPoint extends React.Component<IEntryPointsProps, null> {
+  public constructor(props: IEntryPointsProps) {
+    super(props);
+
+    const { appStore, configStore } = props;
+    appStore.initializeData(configStore.language$);
+  }
+
   public render() {
     const { dataCount } = this.props.appStore;
     const { language$, toggleTheme, theme$ } = this.props.configStore;

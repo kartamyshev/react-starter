@@ -1,4 +1,4 @@
-import { ConfigStore } from '@stores/config.store';
+import { Language } from '@stores/config.store';
 import { observable, computed } from 'mobx';
 
 interface IData {
@@ -13,18 +13,14 @@ export class AppStore {
     { id: 4 }
   ];
 
-  public constructor(
-    private configStore: ConfigStore
-  ) {
-    this.initializeData();
-  }
+  public constructor() {}
 
   @computed get dataCount() {
     return this.data.filter((item: any) => !item.finished).length;
   }
 
-  private initializeData() {
-    this.configStore.language$ === 'en'
+  public initializeData(language: Language) {
+    language === 'en'
       ? this.data.push({ id: 5 })
       : this.data.length = 2;
   }

@@ -5,7 +5,7 @@ export enum Theme {
   Dark = 'dark',
 }
 
-enum Language {
+export enum Language {
   En = 'en',
   De = 'de'
 }
