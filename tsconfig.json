@@ -6,6 +6,7 @@
     "outDir": "./build/",
     "preserveConstEnums": true,
     "experimentalDecorators": true,
+    "sourceMap": true,
     "removeComments": true,
     "target": "ES5",
     "moduleResolution": "node",
