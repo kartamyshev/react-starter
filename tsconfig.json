@@ -9,6 +9,7 @@
     "sourceMap": true,
     "removeComments": true,
     "target": "ES5",
+    "downlevelIteration": true,
     "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {
