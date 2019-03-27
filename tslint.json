@@ -9,6 +9,7 @@
       "options": [120]
     },
     "quotemark": [true, "single", "jsx-double"],
+    "arrow-parens": [true, "ban-single-arg-parens"],
     "only-arrow-functions": false,
     "no-var-requires": false,
     "no-string-literal": false,
