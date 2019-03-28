@@ -23,7 +23,7 @@ export class EntryPoint extends React.Component<IEntryPointsProps, null> {
   }
 
   public render() {
-    const { dataCount } = this.props.appStore;
+    const { dataCount$ } = this.props.appStore;
     const { language$, toggleTheme, theme$ } = this.props.configStore;
 
     const className = classnames({
@@ -34,7 +34,7 @@ export class EntryPoint extends React.Component<IEntryPointsProps, null> {
     return (
       <div className={className}>
         Entry Point Component <br />
-        Amount of items in data array of app store - {dataCount} <br />
+        Amount of items in data array of app store - {dataCount$} <br />
         Language from Config Store - {language$} <br />
         <button onClick={toggleTheme}>Toggle theme</button>
       </div>
