@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "start:open": "webpack-dev-server --mode development --open",
+    "test": "jest --watch",
     "build": "webpack --mode production",
     "precommit": "lint-staged"
   },
@@ -15,18 +16,41 @@
       "git add"
     ]
   },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/test-shim.js",
+      "<rootDir>/test-setup.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/test-preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.(ts|tsx|js)"
+    ]
+  },
   "devDependencies": {
+    "@types/enzyme": "^3.9.3",
+    "@types/jest": "^24.0.14",
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",
     "css-loader": "^0.28.10",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.0.6",
     "husky": "^0.14.3",
+    "jest": "^24.8.0",
     "less": "^3.0.1",
     "less-loader": "^4.0.6",
     "lint-staged": "^8.1.0",
     "nodemon": "^1.17.1",
+    "react-test-renderer": "^16.8.6",
     "style-loader": "^0.20.2",
     "ts-loader": "^4.0.1",
     "tslint": "^5.9.1",
