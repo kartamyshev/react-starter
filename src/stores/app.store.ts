@@ -1,4 +1,4 @@
-import { Language } from '@stores/config.store';
+import { Language } from './config.store';
 import { observable, computed } from 'mobx';
 
 interface IItem {
