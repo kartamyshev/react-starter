@@ -1,15 +1,19 @@
+interface IListeners {
+  [ key: string ]: Array<unknown>;
+}
+
 class EventManager {
 
-  private listeners: any = {};
+  private listeners: IListeners = {};
 
-  public subscribe(eventName: string, callback: (data: any) => void) {
+  public subscribe(eventName: string, callback: (data: unknown) => void) {
     this.listeners[eventName] = this.listeners[eventName] || [];
     this.listeners[eventName].push(callback);
   }
 
-  public publish(eventName: string, payload: any) {
+  public publish(eventName: string, payload: unknown) {
     if (this.listeners[eventName]) {
-      this.listeners[eventName].forEach((cb: (payload: any) => {}) => {
+      this.listeners[eventName].forEach((cb: (payload: unknown) => {}) => {
         cb(payload);
       });
     }
