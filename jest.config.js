@@ -1,8 +1,8 @@
 module.exports = {
-  setupFiles: ['<rootDir>/test-shim.js', '<rootDir>/test-setup.js'],
+  setupFiles: ['<rootDir>/jest/test-shim.js', '<rootDir>/jest/test-setup.js'],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   transform: {
-    '^.+\\.(ts|tsx)$': '<rootDir>/test-preprocessor.js'
+    '^.+\\.(ts|tsx)$': '<rootDir>/jest/test-preprocessor.js'
   },
   testMatch: ['**/__tests__/*.(ts|tsx|js)'],
   moduleNameMapper: {
