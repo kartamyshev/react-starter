@@ -7,3 +7,4 @@ yarn-error.log
 help
 .vscode
 __mocks__
+coverage/
