@@ -10,6 +10,7 @@ module.exports = {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@css/(.*)$': '<rootDir>/src/css/$1',
     '^@stores/(.*)$': '<rootDir>/src/stores/$1',
-    '^@utils/(.*)$': '<rootDir>/src/utils/$1'
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js'
   }
 };

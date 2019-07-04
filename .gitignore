@@ -6,3 +6,4 @@ README.md
 yarn-error.log
 help
 .vscode
+__mocks__
