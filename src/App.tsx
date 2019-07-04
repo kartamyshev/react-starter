@@ -6,6 +6,8 @@ import { Provider } from 'mobx-react';
 import { EntryPoint } from './components/entry-point';
 import { initStores } from './stores/initStores';
 
+import '@css/base.less';
+
 configure({
   enforceActions: true
 });

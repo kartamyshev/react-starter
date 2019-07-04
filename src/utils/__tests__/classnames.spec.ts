@@ -25,9 +25,9 @@ describe('utils/classnames', () => {
     expect(classnames(classes)).toEqual('button collapsed');
   });
 
-  it('checks when passed incorrect parameter type', () => {
-    const classes: number = 12;
-    expect(() => classnames(classes)).toThrow();
-  });
+  // xit('checks when passed incorrect parameter type', () => {
+  //   const classes: number = 12;
+  //   expect(() => classnames(classes)).toThrow();
+  // });
 
 });
