@@ -1,5 +1,5 @@
 interface IListeners {
-  [ key: string ]: Array<unknown>;
+  [key: string]: Array<unknown>;
 }
 
 class EventManager {
