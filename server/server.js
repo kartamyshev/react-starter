@@ -1,7 +1,8 @@
 require('./config/config');
+require('./db/mongoose');
+
 const express = require('express');
-const { mongoose } = require('./db/mongoose');
-const { User, Theme } = require('./models');
+const { Theme } = require('./models');
 const { initMiddleware } = require('./middleware/init');
 
 const app = express();
@@ -12,12 +13,20 @@ app.get('/', async (request, response, next) => {
 });
 
 app.post('/toggleTheme', async (request, response, next) => {
-  const { name } = await Theme.findOneAndUpdate(
-    { identify: 'theme' },
-    { $set: { name: request.body.theme } },
-    { new: true }
-  );
-  response.status(200).send(name);
+  const { value } = request.body;
+  const fromDB = await Theme.findOne({ identify: 'theme' });
+
+  if (fromDB === null) {
+    await Theme.create({ identify: 'theme', value });
+    response.status(200).send(value);
+  } else {
+    const result = await Theme.findOneAndUpdate(
+      { identify: 'theme' },
+      { $set: { value } },
+      { new: true }
+    );
+    response.status(200).send(result.value);
+  }
 });
 
 app.listen(3000, function() {

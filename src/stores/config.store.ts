@@ -1,4 +1,7 @@
 import { observable, action, computed } from 'mobx';
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:3000';
 
 export enum Theme {
   Light = 'light',
@@ -19,9 +22,11 @@ export class ConfigStore {
   }
 
   @action.bound
-  public toggleTheme() {
-    const theme = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
-    this.theme$ = theme;
+  public async toggleTheme() {
+    const value = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
+    const newValue = await axios.post(`${BASE_URL}/toggleTheme`, { value });
+
+    this.theme$ = newValue.data;
   }
 
   @computed

@@ -4,7 +4,7 @@ const Theme = mongoose.model('Theme', {
   identify: {
     type: String
   },
-  name: {
+  value: {
     type: String
   }
 });
