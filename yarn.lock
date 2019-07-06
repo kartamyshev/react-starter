@@ -9243,8 +9243,8 @@ typescript@^2.1.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.1.tgz#6160e4f8f195d5ba81d4876f9c0cc1fbc0820624"
 
 typescript@^3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
 
 typings-core@^2.3.3:
   version "2.3.3"
