@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -19,14 +19,25 @@ export class ConfigStore {
 
   public constructor() {
     this.attachLanguage();
+    this.initializeTheme();
   }
 
   @action.bound
   public async toggleTheme() {
     const value = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
-    const newValue = await axios.post(`${BASE_URL}/toggleTheme`, { value });
 
-    this.theme$ = newValue.data;
+    axios.post(`${BASE_URL}/toggleTheme`, { value })
+      .then(({ data }: AxiosResponse) => {
+        this.theme$ = data;
+      });
+  }
+
+  @action.bound
+  public async initializeTheme() {
+    axios.get(`${BASE_URL}/getTheme`)
+      .then(({ data }: AxiosResponse) => {
+        this.theme$ = data;
+      });
   }
 
   @computed

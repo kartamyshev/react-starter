@@ -2,6 +2,7 @@ require('./config/config');
 require('./db/mongoose');
 
 const express = require('express');
+const { head } = require('ramda');
 const { Theme } = require('./models');
 const { initMiddleware } = require('./middleware/init');
 
@@ -10,6 +11,11 @@ initMiddleware(app);
 
 app.get('/', async (request, response, next) => {
   response.status(200).send();
+});
+
+app.get('/getTheme', async (request, response, next) => {
+  const data = await Theme.find({});
+  response.status(200).send(head(data).value);
 });
 
 app.post('/toggleTheme', async (request, response, next) => {
