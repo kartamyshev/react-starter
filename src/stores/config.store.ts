@@ -34,7 +34,7 @@ export class ConfigStore {
 
   @action.bound
   public async initializeTheme() {
-    axios.get(`${BASE_URL}/getTheme`)
+    axios.get(`${BASE_URL}/getTheme?currentValue=${this.theme$}`)
       .then(({ data }: AxiosResponse) => {
         this.theme$ = data;
       });

@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
 const Theme = mongoose.model('Theme', {
-  identify: {
-    type: String
-  },
   value: {
     type: String
-  }
+  },
+  lastModified: Date
 });
 
 module.exports = { Theme };

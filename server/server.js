@@ -2,7 +2,6 @@ require('./config/config');
 require('./db/mongoose');
 
 const express = require('express');
-const { head } = require('ramda');
 const { Theme } = require('./models');
 const { initMiddleware } = require('./middleware/init');
 
@@ -14,25 +13,32 @@ app.get('/', async (request, response, next) => {
 });
 
 app.get('/getTheme', async (request, response, next) => {
-  const data = await Theme.find({});
-  response.status(200).send(head(data).value);
+  const [theme] = await Theme.find();
+  if (theme === undefined) {
+    const { query } = request;
+    await Theme.create({
+      value: query.currentValue,
+      lastModified: Date.now()
+    });
+    response.status(200).send(query.currentValue);
+  } else {
+    const [{ value }] = await Theme.find();
+    response.status(200).send(value);
+  }
 });
 
 app.post('/toggleTheme', async (request, response, next) => {
-  const { value } = request.body;
-  const fromDB = await Theme.findOne({ identify: 'theme' });
-
-  if (fromDB === null) {
-    await Theme.create({ identify: 'theme', value });
-    response.status(200).send(value);
-  } else {
-    const result = await Theme.findOneAndUpdate(
-      { identify: 'theme' },
-      { $set: { value } },
-      { new: true }
-    );
-    response.status(200).send(result.value);
-  }
+  const { value } = await Theme.findOneAndUpdate(
+    {},
+    {
+      $set: {
+        value: request.body.value,
+        lastModified: Date.now()
+      }
+    },
+    { new: true }
+  );
+  response.status(200).send(value);
 });
 
 app.listen(3000, function() {
