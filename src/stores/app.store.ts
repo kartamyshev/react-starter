@@ -6,7 +6,12 @@ interface IItem {
   finished: boolean;
 }
 
-export class AppStore {
+interface IAppStore {
+  dataCount$: number;
+  initializeData(language: Language): void;
+}
+
+export class AppStore implements IAppStore {
   @observable private _data$: IItem[] = [
     { id: 1, finished: false },
     { id: 2, finished: false },
@@ -16,7 +21,8 @@ export class AppStore {
 
   public constructor() {}
 
-  @computed get dataCount$() {
+  @computed
+  public get dataCount$() {
     return this._data$.filter((item: IItem) => !item.finished).length;
   }
 

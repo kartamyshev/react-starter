@@ -13,7 +13,14 @@ export enum Language {
   De = 'de'
 }
 
-export class ConfigStore {
+interface IConfigStore {
+  theme$: Theme;
+  language$: Language;
+  toggleTheme(): void;
+  initializeTheme(): void;
+}
+
+export class ConfigStore implements IConfigStore {
   @observable private _language$: Language = null;
   @observable private _theme$: Theme = Theme.Light;
 
