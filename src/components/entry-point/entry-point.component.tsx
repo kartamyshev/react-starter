@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 
 import { AppStore } from '@stores/app.store';
-import { ConfigStore, Theme } from '@stores/config.store';
+import { ConfigStore } from '@stores/config.store';
 import { classnames } from '@utils/classnames';
 
 import './entry-point.component.less';
@@ -24,19 +24,19 @@ export class EntryPoint extends React.Component<IEntryPointsProps, null> {
 
   public render() {
     const { dataCount$ } = this.props.appStore;
-    const { language$, toggleTheme, theme$ } = this.props.configStore;
+    const { value$, changeValue } = this.props.configStore;
 
     const className = classnames({
-      'entry-point': true,
-      'entry-point--light': theme$ === Theme.Light,
-      'entry-point--dark': theme$ === Theme.Dark
+      'entry-point': true
     });
     return (
       <div className={className}>
-        Entry Point Component <br />
-        Amount of items in data array of app store - {dataCount$} <br />
-        Language from Config Store - {language$} <br />
-        <button onClick={toggleTheme}>Toggle theme</button>
+        <input
+          type="text"
+          onChange={(e: React.SyntheticEvent<HTMLInputElement>) =>
+            changeValue(e.currentTarget.value)
+          }
+        />
       </div>
     );
   }

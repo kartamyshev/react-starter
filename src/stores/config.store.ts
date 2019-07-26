@@ -1,5 +1,6 @@
 import { observable, action, computed } from 'mobx';
 import axios, { AxiosResponse } from 'axios';
+import { parseLine } from '../grammar/parse-line';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -21,12 +22,20 @@ interface IConfigStore {
 }
 
 export class ConfigStore implements IConfigStore {
+  @observable public value$: string = '';
   @observable private _language$: Language = null;
   @observable private _theme$: Theme = Theme.Light;
 
   public constructor() {
     this.attachLanguage();
     this.initializeTheme();
+    // parseLine();
+  }
+
+  @action.bound
+  public changeValue(value: string) {
+    // this.value$ = parseLine(value);
+    parseLine();
   }
 
   @action.bound
