@@ -1,6 +1,6 @@
 // Generated from src/grammar/CQL.g4 by ANTLR 4.7.1
 // jshint ignore: start
-var antlr4 = require('antlr4/index');
+const antlr4 = require('antlr4/index');
 
 // This class defines a complete listener for a parse tree produced by CQLParser.
 function CQLListener() {
@@ -143,4 +143,4 @@ CQLListener.prototype.enterOperator = function(ctx) {};
 // Exit a parse tree produced by CQLParser#operator.
 CQLListener.prototype.exitOperator = function(ctx) {};
 
-exports.CQLListener = CQLListener;
+module.exports = { CQLListener };

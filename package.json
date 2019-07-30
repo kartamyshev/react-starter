@@ -4,45 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "start:open": "webpack-dev-server --mode development --open",
-    "test:ci": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "build": "webpack --mode production",
-    "precommit": "lint-staged",
-    "mongo": "cd ~/mongo/bin && ./mongod --dbpath ~/mongo-data/",
-    "server": "nodemon server/server.js"
-  },
-  "lint-staged": {
-    "*.{js,tsx}": [
-      "prettier --write --single-quote",
-      "git add"
-    ]
+    "start": "webpack-dev-server --mode development"
   },
   "devDependencies": {
     "@types/antlr4": "^4.7.0",
     "@types/axios": "^0.14.0",
-    "@types/enzyme": "^3.9.3",
-    "@types/jest": "^24.0.14",
-    "@types/ramda": "^0.26.9",
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",
-    "@types/sinon": "^7.0.13",
     "antlr4": "^4.7.2",
     "css-loader": "^0.28.10",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.0.6",
-    "husky": "^0.14.3",
-    "jest": "^24.8.0",
     "less": "^3.0.1",
     "less-loader": "^4.0.6",
     "lint-staged": "^8.1.0",
-    "nodemon": "^1.17.1",
-    "sinon": "^7.3.2",
     "style-loader": "^0.20.2",
     "ts-loader": "^4.0.1",
     "tslint": "^5.9.1",
@@ -55,14 +31,8 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
     "mobx": "^5.0.3",
     "mobx-react": "^5.4.3",
-    "mongodb": "^3.2.7",
-    "mongoose": "^5.6.3",
-    "ramda": "^0.26.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   }

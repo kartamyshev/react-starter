@@ -1,20 +1,29 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { configure } from 'mobx';
-import { Provider } from 'mobx-react';
+import { observer } from 'mobx-react';
+import { parseLine } from './grammar/parse-line';
 
-import { EntryPoint } from './components/entry-point';
-import { initStores } from './stores/initStores';
+export class Store {
+  public changeValue(value: string) {
+    const result = parseLine(value);
+  }
+}
 
-import '@css/base.less';
-
-configure({
-  enforceActions: true
+const TestComponent = observer(({ store }) => {
+  const defaultValue = 'cpcc=("C04B28/02" prox/unit=sentence ("C04B28/04", "DE", "US", "ES"))';
+  return (
+    <input
+      style={{ width: 600, fontSize: 16, height: 30, padding: 10 }}
+      type="text"
+      defaultValue={defaultValue}
+      onChange={(e: React.SyntheticEvent<HTMLInputElement>) =>
+        store.changeValue(e.currentTarget.value)
+      }
+    />
+  );
 });
 
 ReactDOM.render(
-  <Provider {...initStores()}>
-    <EntryPoint />
-  </Provider>,
+  <TestComponent store={new Store()} />,
   document.getElementById('application-container')
 );
