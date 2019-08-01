@@ -1,16 +1,44 @@
 grammar CQL;
 
 init
-  : '{' value (',' value)* '}'
+  : statement (' ' statement)*
   ;
 
-value
-  : init
-  | INT
+statement
+  : VARIABLE ' a = 12;'
   ;
 
-INT: [0-9]+;
-WS: [ \t\r\n]+ -> skip;
+VARIABLE: 'var' | 'let' | 'const';
+
+// init
+//   : '{' value (',' value)* '}'
+//   ;
+
+// value
+//   : init
+//   | INT
+//   ;
+
+// INT: [0-9]+;
+// WS: [ \t\r\n]+ -> skip;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -102,5 +130,5 @@ WS: [ \t\r\n]+ -> skip;
 // NOT: 'not' | 'NOT';
 // PROX: 'prox' | 'PROX';
 
-LETTER: ~[(),:=/"<> \t\r\n]+;
+// LETTER: ~[(),:=/"<> \t\r\n]+;
 // WS:   [ \t\r\n]->skip;

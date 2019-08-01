@@ -8,26 +8,31 @@ const toHex = (text: string): string => {
 
 export class Listener extends CQLListener {
 
-  private data: string[] = [];
+  private data = {
+    var: [],
+    let: [],
+    const: [],
+  };
 
-  public enterInit(ctx) {
-    this.data.push('"');
+  public enterStatement(ctx) {
+    const type = ctx.VARIABLE().getText();
+    this.data[type].push(ctx.getText());
   }
 
-  public exitInit(ctx) {
-    this.data.push('"');
-  }
+  // public exitInit(ctx) {
+    // this.data.push('"');
+  // }
 
-  public enterValue(ctx) {
-    const int = ctx.INT();
-    if (int === null) {
-      return;
-    }
-    const value = int.getText();
-    this.data.push(toHex(value));
-  }
+  // public enterValue(ctx) {
+    // const int = ctx.INT();
+    // if (int === null) {
+    //   return;
+    // }
+    // const value = int.getText();
+    // this.data.push(toHex(value));
+  // }
 
-  public get result(): string[] {
+  public get result(): any {
     return this.data;
   }
 }

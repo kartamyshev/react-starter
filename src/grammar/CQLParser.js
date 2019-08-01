@@ -5,20 +5,17 @@ var CQLListener = require('./CQLListener').CQLListener;
 var grammarFileName = "CQL.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\b\u0016\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0003\u0002\u0003",
-    "\u0002\u0003\u0002\u0003\u0002\u0007\u0002\u000b\n\u0002\f\u0002\u000e",
-    "\u0002\u000e\u000b\u0002\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003",
-    "\u0005\u0003\u0014\n\u0003\u0003\u0003\u0002\u0002\u0004\u0002\u0004",
-    "\u0002\u0002\u0002\u0015\u0002\u0006\u0003\u0002\u0002\u0002\u0004\u0013",
-    "\u0003\u0002\u0002\u0002\u0006\u0007\u0007\u0003\u0002\u0002\u0007\f",
-    "\u0005\u0004\u0003\u0002\b\t\u0007\u0004\u0002\u0002\t\u000b\u0005\u0004",
-    "\u0003\u0002\n\b\u0003\u0002\u0002\u0002\u000b\u000e\u0003\u0002\u0002",
-    "\u0002\f\n\u0003\u0002\u0002\u0002\f\r\u0003\u0002\u0002\u0002\r\u000f",
-    "\u0003\u0002\u0002\u0002\u000e\f\u0003\u0002\u0002\u0002\u000f\u0010",
-    "\u0007\u0005\u0002\u0002\u0010\u0003\u0003\u0002\u0002\u0002\u0011\u0014",
-    "\u0005\u0002\u0002\u0002\u0012\u0014\u0007\u0006\u0002\u0002\u0013\u0011",
-    "\u0003\u0002\u0002\u0002\u0013\u0012\u0003\u0002\u0002\u0002\u0014\u0005",
-    "\u0003\u0002\u0002\u0002\u0004\f\u0013"].join("");
+    "\u0003\u0005\u0012\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0003\u0002",
+    "\u0003\u0002\u0003\u0002\u0007\u0002\n\n\u0002\f\u0002\u000e\u0002\r",
+    "\u000b\u0002\u0003\u0003\u0003\u0003\u0003\u0003\u0003\u0003\u0002\u0002",
+    "\u0004\u0002\u0004\u0002\u0002\u0002\u0010\u0002\u0006\u0003\u0002\u0002",
+    "\u0002\u0004\u000e\u0003\u0002\u0002\u0002\u0006\u000b\u0005\u0004\u0003",
+    "\u0002\u0007\b\u0007\u0003\u0002\u0002\b\n\u0005\u0004\u0003\u0002\t",
+    "\u0007\u0003\u0002\u0002\u0002\n\r\u0003\u0002\u0002\u0002\u000b\t\u0003",
+    "\u0002\u0002\u0002\u000b\f\u0003\u0002\u0002\u0002\f\u0003\u0003\u0002",
+    "\u0002\u0002\r\u000b\u0003\u0002\u0002\u0002\u000e\u000f\u0007\u0005",
+    "\u0002\u0002\u000f\u0010\u0007\u0004\u0002\u0002\u0010\u0005\u0003\u0002",
+    "\u0002\u0002\u0003\u000b"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -27,11 +24,11 @@ var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new a
 
 var sharedContextCache = new antlr4.PredictionContextCache();
 
-var literalNames = [ null, "'{'", "','", "'}'" ];
+var literalNames = [ null, "' '", "' a = 12;'" ];
 
-var symbolicNames = [ null, null, null, null, "INT", "WS", "LETTER" ];
+var symbolicNames = [ null, null, null, "VARIABLE" ];
 
-var ruleNames =  [ "init", "value" ];
+var ruleNames =  [ "init", "statement" ];
 
 function CQLParser (input) {
 	antlr4.Parser.call(this, input);
@@ -54,13 +51,10 @@ Object.defineProperty(CQLParser.prototype, "atn", {
 CQLParser.EOF = antlr4.Token.EOF;
 CQLParser.T__0 = 1;
 CQLParser.T__1 = 2;
-CQLParser.T__2 = 3;
-CQLParser.INT = 4;
-CQLParser.WS = 5;
-CQLParser.LETTER = 6;
+CQLParser.VARIABLE = 3;
 
 CQLParser.RULE_init = 0;
-CQLParser.RULE_value = 1;
+CQLParser.RULE_statement = 1;
 
 function InitContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -78,14 +72,14 @@ function InitContext(parser, parent, invokingState) {
 InitContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InitContext.prototype.constructor = InitContext;
 
-InitContext.prototype.value = function(i) {
+InitContext.prototype.statement = function(i) {
     if(i===undefined) {
         i = null;
     }
     if(i===null) {
-        return this.getTypedRuleContexts(ValueContext);
+        return this.getTypedRuleContexts(StatementContext);
     } else {
-        return this.getTypedRuleContext(ValueContext,i);
+        return this.getTypedRuleContext(StatementContext,i);
     }
 };
 
@@ -114,23 +108,19 @@ CQLParser.prototype.init = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 4;
-        this.match(CQLParser.T__0);
-        this.state = 5;
-        this.value();
-        this.state = 10;
+        this.statement();
+        this.state = 9;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while(_la===CQLParser.T__1) {
+        while(_la===CQLParser.T__0) {
+            this.state = 5;
+            this.match(CQLParser.T__0);
             this.state = 6;
-            this.match(CQLParser.T__1);
-            this.state = 7;
-            this.value();
-            this.state = 12;
+            this.statement();
+            this.state = 11;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         }
-        this.state = 13;
-        this.match(CQLParser.T__2);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -145,7 +135,7 @@ CQLParser.prototype.init = function() {
     return localctx;
 };
 
-function ValueContext(parser, parent, invokingState) {
+function StatementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
 	}
@@ -154,59 +144,44 @@ function ValueContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = CQLParser.RULE_value;
+    this.ruleIndex = CQLParser.RULE_statement;
     return this;
 }
 
-ValueContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
-ValueContext.prototype.constructor = ValueContext;
+StatementContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+StatementContext.prototype.constructor = StatementContext;
 
-ValueContext.prototype.init = function() {
-    return this.getTypedRuleContext(InitContext,0);
+StatementContext.prototype.VARIABLE = function() {
+    return this.getToken(CQLParser.VARIABLE, 0);
 };
 
-ValueContext.prototype.INT = function() {
-    return this.getToken(CQLParser.INT, 0);
-};
-
-ValueContext.prototype.enterRule = function(listener) {
+StatementContext.prototype.enterRule = function(listener) {
     if(listener instanceof CQLListener ) {
-        listener.enterValue(this);
+        listener.enterStatement(this);
 	}
 };
 
-ValueContext.prototype.exitRule = function(listener) {
+StatementContext.prototype.exitRule = function(listener) {
     if(listener instanceof CQLListener ) {
-        listener.exitValue(this);
+        listener.exitStatement(this);
 	}
 };
 
 
 
 
-CQLParser.ValueContext = ValueContext;
+CQLParser.StatementContext = StatementContext;
 
-CQLParser.prototype.value = function() {
+CQLParser.prototype.statement = function() {
 
-    var localctx = new ValueContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 2, CQLParser.RULE_value);
+    var localctx = new StatementContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 2, CQLParser.RULE_statement);
     try {
-        this.state = 17;
-        this._errHandler.sync(this);
-        switch(this._input.LA(1)) {
-        case CQLParser.T__0:
-            this.enterOuterAlt(localctx, 1);
-            this.state = 15;
-            this.init();
-            break;
-        case CQLParser.INT:
-            this.enterOuterAlt(localctx, 2);
-            this.state = 16;
-            this.match(CQLParser.INT);
-            break;
-        default:
-            throw new antlr4.error.NoViableAltException(this);
-        }
+        this.enterOuterAlt(localctx, 1);
+        this.state = 12;
+        this.match(CQLParser.VARIABLE);
+        this.state = 13;
+        this.match(CQLParser.T__1);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;

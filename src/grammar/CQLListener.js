@@ -20,12 +20,12 @@ CQLListener.prototype.exitInit = function(ctx) {
 };
 
 
-// Enter a parse tree produced by CQLParser#value.
-CQLListener.prototype.enterValue = function(ctx) {
+// Enter a parse tree produced by CQLParser#statement.
+CQLListener.prototype.enterStatement = function(ctx) {
 };
 
-// Exit a parse tree produced by CQLParser#value.
-CQLListener.prototype.exitValue = function(ctx) {
+// Exit a parse tree produced by CQLParser#statement.
+CQLListener.prototype.exitStatement = function(ctx) {
 };
 
 
