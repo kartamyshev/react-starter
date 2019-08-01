@@ -10,7 +10,7 @@ export const parseLine = (input: string) => {
   const parser = new CQLParser(tokens);
   parser.buildParseTrees = true;
 
-  const tree = parser.parse();
+  const tree = parser.init();
   const listener = new Listener();
 
   antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
