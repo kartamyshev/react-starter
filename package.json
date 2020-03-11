@@ -46,7 +46,7 @@
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",
     "tslint-webpack-plugin": "^1.2.0",
-    "typescript": "^3.2.4",
+    "typescript": "^3.8.3",
     "typings": "^2.1.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10",
