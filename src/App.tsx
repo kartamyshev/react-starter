@@ -9,7 +9,7 @@ import { initStores } from './stores/initStores';
 import '@css/base.less';
 
 configure({
-  enforceActions: true
+  enforceActions: 'observed'
 });
 
 ReactDOM.render(
