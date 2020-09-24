@@ -1,5 +1,6 @@
 import { observable, action, computed } from 'mobx';
 import axios, { AxiosResponse } from 'axios';
+import { injectable } from 'inversify';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -13,13 +14,14 @@ export enum Language {
   De = 'de'
 }
 
-interface IConfigStore {
+export interface IConfigStore {
   theme$: Theme;
   language$: Language;
   toggleTheme(): void;
   initializeTheme(): void;
 }
 
+@injectable()
 export class ConfigStore implements IConfigStore {
   @observable private _language$: Language = null;
   @observable private _theme$: Theme = Theme.Light;
