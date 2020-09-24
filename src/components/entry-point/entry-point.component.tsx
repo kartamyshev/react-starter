@@ -18,8 +18,7 @@ export class EntryPoint extends React.Component<IEntryPointsProps, null> {
   public constructor(props: IEntryPointsProps) {
     super(props);
 
-    const { appStore, configStore } = props;
-    appStore.initializeData(configStore.language$);
+    props.appStore.initializeData();
   }
 
   public render() {

@@ -1,9 +1,11 @@
-import { AppStore } from '../stores/app.store';
-import { ConfigStore } from '../stores/config.store';
+import { IAppStore } from '@stores/app.store';
+import { IConfigStore } from '@stores/config.store';
+import { container } from '@ioc/inversify.config';
+import { TYPES } from '@ioc/types';
 
 export const initStores = () => {
-  const configStore = new ConfigStore();
-  const appStore = new AppStore();
+  const appStore = container.get<IAppStore>(TYPES.AppStore);
+  const configStore = container.get<IConfigStore>(TYPES.ConfigStore);
 
   return { appStore, configStore };
 };
