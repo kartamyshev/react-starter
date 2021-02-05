@@ -19,7 +19,8 @@
       "@components/*": ["components/*"],
       "@css/*": ["css/*"],
       "@stores/*": ["stores/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
     }
   },
   "exclude": [

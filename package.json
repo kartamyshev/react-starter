@@ -15,7 +15,7 @@
     "server": "nodemon server/server.js"
   },
   "lint-staged": {
-    "*.{js,tsx}": [
+    "*.{js}": [
       "prettier --write --single-quote",
       "git add"
     ]
@@ -52,15 +52,15 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mobx": "^5.0.3",
-    "mobx-react": "^5.4.3",
+    "mobx": "^6.1.5",
+    "mobx-react": "^7.1.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.3",
-    "ramda": "^0.26.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "ramda": "^0.27.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   }
 }

@@ -1,70 +1,52 @@
-import { observable, action, computed } from 'mobx';
-import axios, { AxiosResponse } from 'axios';
+import {observable, action, computed} from 'mobx';
+import axios, {AxiosResponse} from 'axios';
+import RootStore from '@stores/root.store';
 
-const BASE_URL = 'http://localhost:3000';
+declare const BASE_URL: string;
 
 export enum Theme {
   Light = 'light',
   Dark = 'dark',
 }
 
-export enum Language {
-  En = 'en',
-  De = 'de'
-}
-
 interface IConfigStore {
-  theme$: Theme;
-  language$: Language;
+  theme: Theme;
   toggleTheme(): void;
   initializeTheme(): void;
 }
 
-export class ConfigStore implements IConfigStore {
-  @observable private _language$: Language = null;
-  @observable private _theme$: Theme = Theme.Light;
+export default class ConfigStore implements IConfigStore {
+  @observable private _theme: Theme = Theme.Light;
 
-  public constructor() {
-    this.attachLanguage();
+  public constructor(
+    private readonly _rootStore: RootStore,
+  ) {
     this.initializeTheme();
   }
 
   @action.bound
-  public async toggleTheme() {
-    const value = this.theme$ === Theme.Dark ? Theme.Light : Theme.Dark;
+  public toggleTheme = async () => {
+    const value = this.theme === Theme.Dark ? Theme.Light : Theme.Dark;
 
     axios.post(`${BASE_URL}/toggleTheme`, { value })
       .then(({ data }: AxiosResponse) => {
-        this.theme$ = data;
+        this.theme = data;
       });
   }
 
   @action.bound
   public async initializeTheme() {
-    axios.get(`${BASE_URL}/getTheme?currentValue=${this.theme$}`)
+    axios.get(`${BASE_URL}/getTheme?currentValue=${this.theme}`)
       .then(({ data }: AxiosResponse) => {
-        this.theme$ = data;
+        this.theme = data;
       });
   }
 
   @computed
-  public get theme$(): Theme {
-    return this._theme$;
+  public get theme(): Theme {
+    return this._theme;
   }
-  public set theme$(value: Theme) {
-    this._theme$ = value;
-  }
-
-  @computed
-  public get language$(): Language {
-    return this._language$;
-  }
-  public set language$(value: Language) {
-    this._language$ = value;
-  }
-
-  private attachLanguage() {
-    const language = Math.random() > .5 ? Language.En : Language.De;
-    this.language$ = language;
+  public set theme(value: Theme) {
+    this._theme = value;
   }
 }
