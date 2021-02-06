@@ -3,6 +3,7 @@ import axios, {AxiosResponse} from 'axios';
 import RootStore from '@stores/root.store';
 
 declare const BASE_URL: string;
+declare const APP_VERSION: string;
 
 export enum Theme {
   Light = 'light',

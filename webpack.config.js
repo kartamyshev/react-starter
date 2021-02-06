@@ -60,6 +60,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       BASE_URL: JSON.stringify('http://localhost:3000'),
+      APP_VERSION: JSON.stringify(require('./package.json').version),
     }),
   ],
   resolve: {
