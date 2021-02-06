@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { observer } from 'mobx-react';
+import React, {FC} from 'react';
+import {observer} from 'mobx-react';
 import Button from '@material-ui/core/Button';
 
 import {Theme} from '@stores/config.store';
@@ -14,20 +14,20 @@ const App: FC = () => {
   } = useStores();
 
   const className = classnames({
-    'app': true,
+    app: true,
     'app--light': theme === Theme.Light,
     'app--dark': theme === Theme.Dark
   });
 
   return (
     <div className={className}>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={toggleTheme}
-      >
-        Toggle theme
-      </Button>
+      <header>
+        <Button variant="contained" color="primary" onClick={toggleTheme}>
+          Toggle theme
+        </Button>
+      </header>
+      <main />
+      <footer />
     </div>
   );
 };

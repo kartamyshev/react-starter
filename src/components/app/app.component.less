@@ -1,11 +1,30 @@
+:root {
+  --border-color: #3f51b5;
+}
+
 .app {
   height: 100%;
+  display: grid;
+  grid-template-rows: 100px auto 60px;
 
   &--light {
-    background: #eee;
+    background: whitesmoke;
+    color: #121212;
   }
 
   &--dark {
-    background: #888888;
+    background: #121212;
+    color: whitesmoke;
   }
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+footer {
+  border-top: 1px solid var(--border-color);
 }
