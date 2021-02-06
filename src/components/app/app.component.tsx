@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
+import Button from '@material-ui/core/Button';
 
 import {Theme} from '@stores/config.store';
 import {classnames} from '@utils/classnames';
@@ -9,7 +10,7 @@ import './app.component.less';
 
 const App: FC = () => {
   const {
-    configStore: { theme, toggleTheme }
+    configStore: {theme, toggleTheme}
   } = useStores();
 
   const className = classnames({
@@ -20,8 +21,13 @@ const App: FC = () => {
 
   return (
     <div className={className}>
-      App Component <br />
-      <button onClick={toggleTheme}>Toggle theme</button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={toggleTheme}
+      >
+        Toggle theme
+      </Button>
     </div>
   );
 };

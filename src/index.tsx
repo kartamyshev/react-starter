@@ -23,7 +23,7 @@ ReactDOM.render(
 
 /**
  * TODO:
- * - material ui
  * - eslint
  * - router service
+ * - fetch service
  */
