@@ -1,4 +1,4 @@
-import {observable, action, computed} from 'mobx';
+import {observable, action, computed, makeObservable} from 'mobx';
 import axios, {AxiosResponse} from 'axios';
 import RootStore from '@stores/root.store';
 
@@ -7,7 +7,7 @@ declare const APP_VERSION: string;
 
 export enum Theme {
   Light = 'light',
-  Dark = 'dark',
+  Dark = 'dark'
 }
 
 interface IConfigStore {
@@ -19,26 +19,26 @@ interface IConfigStore {
 export default class ConfigStore implements IConfigStore {
   @observable private _theme: Theme = Theme.Light;
 
-  public constructor(
-    private readonly _rootStore: RootStore,
-  ) {
+  public constructor(private readonly _rootStore: RootStore) {
+    makeObservable(this);
     this.initializeTheme();
   }
 
   @action.bound
-  public toggleTheme = async () => {
+  public async toggleTheme() {
     const value = this.theme === Theme.Dark ? Theme.Light : Theme.Dark;
-
-    axios.post(`${BASE_URL}/toggleTheme`, { value })
-      .then(({ data }: AxiosResponse) => {
+    axios
+      .post(`${BASE_URL}/toggleTheme`, {value})
+      .then(({data}: AxiosResponse) => {
         this.theme = data;
       });
   }
 
   @action.bound
   public async initializeTheme() {
-    axios.get(`${BASE_URL}/getTheme?currentValue=${this.theme}`)
-      .then(({ data }: AxiosResponse) => {
+    axios
+      .get(`${BASE_URL}/getTheme?currentValue=${this.theme}`)
+      .then(({data}: AxiosResponse) => {
         this.theme = data;
       });
   }

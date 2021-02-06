@@ -15,8 +15,8 @@
     "server": "nodemon server/server.js"
   },
   "lint-staged": {
-    "*.{js}": [
-      "prettier --write --single-quote",
+    "*.{js,tsx,ts}": [
+      "prettier --write --single-quote --no-bracket-spacing",
       "git add"
     ]
   },
